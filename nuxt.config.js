@@ -30,7 +30,13 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
+
+  auth:{
+
+  },
   /*
   ** Nuxt.js dev-modules
   */
