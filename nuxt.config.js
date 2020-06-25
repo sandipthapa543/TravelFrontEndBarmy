@@ -30,8 +30,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '~/plugins/axios'
+
   ],
 
   auth:{
@@ -47,6 +47,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
   ],
   /*
   ** vuetify module configuration
