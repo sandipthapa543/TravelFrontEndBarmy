@@ -30,31 +30,26 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
+      <!-- <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
       >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
+      </v-btn> -->
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
+            <v-btn icon>
+            <v-icon>mdi-magnify</v-icon>
+          </v-btn>
+      
+      
+       <v-btn
+        v-for="(link, i) in links"
+        :key="i"
+        :to="link.to"
+          router
       >
-        <v-icon>mdi-menu</v-icon>
+    
+        <v-text>{{ link.title }}</v-text>
       </v-btn>
     </v-app-bar>
     <v-content>
@@ -62,29 +57,34 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
+      <v-footer
+     :fixed="fixed"
+    dark
+    padless
+     justify="center"
+  >
+    <v-card
+      flat
+      tile
+      class="indigo lighten-1 white--text text-center"
+      width="100%"
     >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+      <v-card-text>
+        <v-btn
+          v-for="icon in icons"
+          :key="icon"
+          class="mx-4 white--text"
+          icon
+        >
+          <v-icon size="24px">{{ icon }}</v-icon>
+        </v-btn>
+      </v-card-text>
+      <v-divider/>
+      <v-card-text class="white--text">
+         <span>&copy; {{ new Date().getFullYear() }} — <strong>Travel</strong> </span>
+      </v-card-text>
+    </v-card>
+  </v-footer>
   </v-app>
 </template>
 
@@ -95,22 +95,56 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+       icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          title: 'Login',
+          to: '/login'
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          title: 'Register',
+          to: '/register'
         }
+      ], links: [
+         {
+          icon: 'mdi-apps',
+          title: 'Home',
+          to: '/'
+        }, {
+          icon: 'mdi-apps',
+          title: 'About Us',
+          to: '/about'
+        }, {
+          icon: 'mdi-apps',
+          title:'Services',
+          to: '/services'
+        }, {
+          icon: 'mdi-apps',
+          title: 'Blog',
+          to: '/blog'
+        },
+         {
+          icon: 'mdi-apps',
+          title: 'Packages',
+          to: '/packages'
+        },
+          {
+          icon: 'mdi-apps',
+          title: 'Contact',
+          to: '/contact'
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Travel'
     }
   }
 }
