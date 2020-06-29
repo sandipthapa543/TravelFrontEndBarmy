@@ -30,13 +30,34 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/axios'
+    '~/plugins/axios.js',
+    '~/plugins/common.js',
+
 
   ],
 
-  auth:{
-
+  auth:{ strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/user/login/', method: 'post', propertyName: 'token' },
+          user: { url: '/user/me/', method: 'get', propertyName: false },
+          logout: false
+        },
+        tokenType: 'Bearer'
+      }
+    },
+    redirect: {
+      login: '/login/',
+      logout: '/login/',
+      callback: '/login',
+      home: '/'
+    },
+    rewriteRedirects: false,
+    fullPathRedirect: false,
+    localStorage: false
   },
+
+
   /*
   ** Nuxt.js dev-modules
   */
@@ -48,6 +69,7 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
   ** vuetify module configuration

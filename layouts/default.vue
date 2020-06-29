@@ -40,21 +40,22 @@
             <v-btn icon>
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
-      
-      
+
+
        <v-btn
         v-for="(link, i) in links"
         :key="i"
         :to="link.to"
           router
       >
-    
+
         <v-text>{{ link.title }}</v-text>
       </v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
         <nuxt />
+       <vue-snackbar></vue-snackbar>
       </v-container>
     </v-content>
       <v-footer
@@ -89,7 +90,10 @@
 </template>
 
 <script>
+  import VueSnackbar from "../components/Common/VueSnackbar";
+  import { mapGetters, mapMutations } from "vuex"
 export default {
+  components: {VueSnackbar},
   data () {
     return {
       clipped: false,

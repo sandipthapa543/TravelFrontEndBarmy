@@ -1,13 +1,22 @@
 <template>
-  <v-carousel>
-    <v-carousel-item
-      v-for="(item,i) in items"
-      :key="i"
-      :src="item.src"
-      reverse-transition="fade-transition"
-      transition="fade-transition"
-    ></v-carousel-item>
-  </v-carousel>
+  <v-row>
+    <v-col>
+      <v-carousel
+        cycle
+        hide-delimiter-background
+        show-arrows-on-hover
+      >
+        <v-carousel-item
+          v-for=" (items,i) in items"
+          :key="i"
+          :src="items"
+          justify="center"
+        >
+        </v-carousel-item>
+      </v-carousel>
+    </v-col>
+  </v-row>
+
 </template>
 
 <script>
