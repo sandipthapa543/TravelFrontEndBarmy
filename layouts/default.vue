@@ -8,19 +8,27 @@
       app
     >
       <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
+        <v-list-item v-if="!$auth.loggedIn" @click="$router.push('/login')">
+          <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
+          <v-list-item-title>Login</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item v-if="!$auth.loggedIn" @click="$router.push('/register')">
+          <v-list-item-icon><v-icon>mdi-map</v-icon></v-list-item-icon>
+          <v-list-item-title>Register</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item v-if="$auth.loggedIn" >
+          <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
+          <v-list-item-title>{{$auth.user.First_Name + ''+ $auth.user.Last_Name}}</v-list-item-title>
+        </v-list-item>
+<!--        <v-list-item v-if="$auth.loggedIn" @click="$router.push('my/profile')">-->
+<!--          <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>-->
+<!--          <v-list-item-title>My Profile</v-list-item-title>-->
+<!--        </v-list-item>-->
+        <v-list-item  v-if="$auth.loggedIn"  @click="logout">
+          <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>
+          <v-list-item-title>Logout</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -149,6 +157,17 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Travel'
+    }
+  },
+  created() {
+    if(this.$auth.loggedIn) {
+
+    }
+  },
+  methods: {
+    logout () {
+      this.$auth.logout();
+      this.setNotifyMessage("Successfully Logout.")
     }
   }
 }
