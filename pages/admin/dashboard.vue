@@ -32,14 +32,13 @@
                         ></v-icon>
                       </v-avatar>
                     </v-col>
-
+                    <v-col>
+                      <div class="blue-grey--text font-weight-bold title">
+                        {{statusBlock[item].text}}
+                      </div>
+                    </v-col>
                   </v-row>
                 </v-card>
-              </v-col>
-              <v-col
-                cols="12"
-              >
-
               </v-col>
             </v-row>
           </v-col>
@@ -65,7 +64,7 @@
         salesCount: 0,
         loading: false,
         statusBlock: {
-          ordersToday: {
+          Activities: {
             icon: 'mdi-account-cash',
             value: 0,
             text: 'Activities',
@@ -80,13 +79,13 @@
           userCount: {
             icon: 'mdi-account-group',
             value: '',
-            text: 'Packages',
+            text: 'Blog',
             sub: 'Till Now'
           },
           productStock: {
-            icon: 'mdi-cart-off',
+            icon: 'mdi-cart',
             value: '',
-            text: 'Product',
+            text: 'Booking',
             sub: 'Out of stock'
           }
         },

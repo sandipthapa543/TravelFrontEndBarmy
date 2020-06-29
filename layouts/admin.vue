@@ -92,52 +92,33 @@
         <vue-snackbar></vue-snackbar>
       </v-content>
     </div>
-    <v-footer  class="grey darken-3">
-      <v-row class="white--text">
-        <v-col sm="12" md="3">
-          <div>Privacy</div>
-          <div>Contact Us</div>
-          <div>SignUp</div>
-        </v-col>
-        <v-col sm="12" md="3">
-          <div>Privacy</div>
-          <div>Contact Us</div>
-          <div>SignUp</div>
-        </v-col>
-        <v-col sm="12" md="3">
-          <div>Privacy</div>
-          <div>Contact Us</div>
-          <div>SignUp</div>
-        </v-col>
-        <v-col class="grey--text" sm="12" md="3">
-          <div class="white--text font-weight-bold title">MelaCart</div>
-          <div>Find Us</div>
-          <div>
-            Head Office: Macchaphkare, Kathmandu Nepal
-          </div>
-          <v-row>
-            <v-col
-              v-for="(icon, index) in socialMedia"
-              :key="index"
-              class="pr-0"
-              cols="auto"
-            >
-              <v-hover
-                v-slot="{ hover }"
-              >
-                <v-icon
-                  v-text="icon"
-                  class="px-0"
-                  :color="hover ? 'red' : 'white'"
-                ></v-icon>
-              </v-hover>
-            </v-col>
-          </v-row>
-          <div>
-            &copy; copyright 2020 MelaCart.
-          </div>
-        </v-col>
-      </v-row>
+    <v-footer
+      :fixed="fixed"
+      dark
+      padless
+      justify="center"
+    >
+      <v-card
+        flat
+        tile
+        class="grey darken-3 lighten-1 white--text text-center"
+        width="100%"
+      >
+        <v-card-text>
+          <v-btn
+            v-for="icon in icons"
+            :key="icon"
+            class="mx-4 white--text"
+            icon
+          >
+            <v-icon size="24px">{{ icon }}</v-icon>
+          </v-btn>
+        </v-card-text>
+        <v-divider/>
+        <v-card-text class="white--text">
+          <span>&copy; {{ new Date().getFullYear() }} — <strong>Travel</strong> </span>
+        </v-card-text>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
@@ -156,9 +137,11 @@
         drawer: false,
         fixed: false,
         selectedIndex: null,
-        socialMedia: [
+        icons: [
           'mdi-facebook',
-          'mdi-instagram'
+          'mdi-twitter',
+          'mdi-linkedin',
+          'mdi-instagram',
         ],
         items: [
           {
@@ -167,40 +150,14 @@
             to: '/'
           },
           {
-            icon: 'mdi-notebook-multiple',
-            title: 'Products',
-            children: [
-              {
-                icon: 'mdi-chart-bubble',
-                title: 'Products',
-                to: '/admin/product'
-              },
-              {
-                icon: 'mdi-chart-bubble',
-                title: 'Categories',
-                to: '/admin/category'
-              },
-              {
-                icon: 'mdi-chart-bubble',
-                title: 'Sub Categories',
-                to: '/admin/sub-category'
-              },
-              {
-                icon: 'mdi-cash',
-                title: 'Voucher',
-                to: '/admin/voucher'
-              }
-            ]
-          },
-          {
             icon: 'mdi-chart-line',
-            title: 'Orders',
-            to: '/admin/orders'
+            title: 'Packages',
+            to: '/admin/packages'
           },
           {
             icon: 'mdi-account-group',
-            title: 'Users',
-            to: '/admin/users'
+            title: 'Activities',
+            to: '/admin/Activity'
           }
         ],
 
