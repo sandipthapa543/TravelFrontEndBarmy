@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="user-login;the-user-logs-in-and-sees-the-home-page" tests="2" failures="0" skipped="0">
+        <properties>
+            <property name="@search" value="true">
+            </property>
+            <property name="URI" value="E:/agile/agileProjectTravel/New folder/TravelFrontEndBarmy/test/features/login.feature">
+            </property>
+        </properties>
+        <testcase name="Given I am on the Login page" classname="user-login;the-user-logs-in-and-sees-the-home-page" time="4.4873638">
+        </testcase>
+        <testcase name="When I enter &quot;test@test.com&quot; and I enter &quot;testtesttest&quot; and I click login" classname="user-login;the-user-logs-in-and-sees-the-home-page" time="0.314600699">
+        </testcase>
+    </testsuite>
+    <testsuite name="new-register-in-login;new-user-registeration-vaidation-test" tests="2" failures="0" skipped="0">
+        <properties>
+            <property name="@search" value="true">
+            </property>
+            <property name="URI" value="E:/agile/agileProjectTravel/New folder/TravelFrontEndBarmy/test/features/register.feature">
+            </property>
+        </properties>
+        <testcase name="Given I am on the Registration page" classname="new-register-in-login;new-user-registeration-vaidation-test" time="6.4634422">
+        </testcase>
+        <testcase name="When I enter &quot;barmy&quot; as First Name and I enter &quot;bbarmy&quot; as last Name and I enter &quot;Nepal&quot; as country and I enter &quot;barmy@gmail.com&quot; as email and I enter &quot;barmy0123&quot; as password and I enter &quot;9865321245&quot; as phone number and I enter &quot;Damak&quot; as address" classname="new-register-in-login;new-user-registeration-vaidation-test" time="0.4497303">
+        </testcase>
+    </testsuite>
+</testsuites>
