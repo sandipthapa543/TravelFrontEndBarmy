@@ -1,5 +1,6 @@
 const { Driver } = require("selenium-webdriver/chrome");
 const { assert } = require("chai");
+const { By } = require("selenium-webdriver");
 
 module.exports = function () {
 
@@ -13,11 +14,11 @@ module.exports = function () {
         const p = './page-objects/login';
         return page.login.userInput(userEmail, userPassword);
     });
-    this.Then(/^I should see indexpage. $/, function (expectedText) {
-        return driver.findElement(By.id("snackbar")).getText().then(textvalue => {
-            assert.equal(expectedText, textvalue)
-        });
-    });
+   
+    this.Then(/^I should see index page open\.$/, function () {
+        return helpers.loadPage(page.login.homepage);
+            });
+        }
 
 
-};
+
