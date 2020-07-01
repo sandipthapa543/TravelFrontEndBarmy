@@ -8,7 +8,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "test": "cucumber-js"
   },
   "dependencies": {
     "@nuxtjs/auth": "^4.9.1",
@@ -18,10 +19,10 @@
     "nuxt": "^2.0.0",
     "popper.js": "^1.16.1",
     "vuex": "latest",
-    "vue": "latest",
     "vue": "latest"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.0.0"
+    
   }
 }

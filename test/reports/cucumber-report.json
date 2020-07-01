@@ -1,0 +1,138 @@
+[
+  {
+    "elements": [
+      {
+        "id": "user-login;the-user-logs-in-and-sees-the-home-page",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "The user logs in and sees the Home page",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I am on the Login page",
+            "result": {
+              "status": "passed",
+              "duration": 4487363800
+            },
+            "line": 6,
+            "match": {
+              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:6"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"test@test.com\" and I enter \"testtesttest\" and I click login",
+            "result": {
+              "status": "passed",
+              "duration": 314600699
+            },
+            "line": 7,
+            "match": {
+              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 642960400
+            },
+            "hidden": true,
+            "match": {
+              "location": "folder\\TravelFrontEndBarmy\\test\\runtime\\world.js:250"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@search",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "user-login",
+    "keyword": "Feature",
+    "line": 2,
+    "name": "User Login",
+    "tags": [
+      {
+        "name": "@search",
+        "line": 1
+      }
+    ],
+    "uri": "E:/agile/agileProjectTravel/New folder/TravelFrontEndBarmy/test/features/login.feature"
+  },
+  {
+    "elements": [
+      {
+        "id": "new-register-in-login;new-user-registeration-vaidation-test",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "new user registeration vaidation test",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I am on the Registration page",
+            "result": {
+              "status": "passed",
+              "duration": 6463442200
+            },
+            "line": 6,
+            "match": {
+              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:4"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"barmy\" as First Name and I enter \"bbarmy\" as last Name and I enter \"Nepal\" as country and I enter \"barmy@gmail.com\" as email and I enter \"barmy0123\" as password and I enter \"9865321245\" as phone number and I enter \"Damak\" as address",
+            "result": {
+              "status": "passed",
+              "duration": 449730300
+            },
+            "line": 7,
+            "match": {
+              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:10"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 610951201
+            },
+            "hidden": true,
+            "match": {
+              "location": "folder\\TravelFrontEndBarmy\\test\\runtime\\world.js:250"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@search",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "new-register-in-login",
+    "keyword": "Feature",
+    "line": 2,
+    "name": "new Register in login",
+    "tags": [
+      {
+        "name": "@search",
+        "line": 1
+      }
+    ],
+    "uri": "E:/agile/agileProjectTravel/New folder/TravelFrontEndBarmy/test/features/register.feature"
+  }
+]
