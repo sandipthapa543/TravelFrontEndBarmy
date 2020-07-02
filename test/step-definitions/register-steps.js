@@ -11,6 +11,10 @@ this.When(/^I enter "([^"]*)" as First Name and I enter "([^"]*)" as last Name a
     return page.registration.userInput(ufname, ulname,ucountry,uemail,upassword,uphone,uaddress);
     
   });
+  this.Then(/^I should direct to login page\.$/, function () {
+    return  driver.findElement(by.xpath('/html/body/div/div/div/div/main/div/div/div[1]/div/div/div/form/div/div/div[2]/div/button/span')).click();
+   
+        });
 
 
 

@@ -13,11 +13,11 @@
             "name": "I am on the Login page",
             "result": {
               "status": "passed",
-              "duration": 8170757200
+              "duration": 9319797001
             },
             "line": 6,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:7"
+              "location": "project\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:7"
             }
           },
           {
@@ -26,11 +26,11 @@
             "name": "I enter \"test@test.com\" and I enter \"testtesttest\" and I click login",
             "result": {
               "status": "passed",
-              "duration": 127112399
+              "duration": 229300
             },
             "line": 7,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:13"
+              "location": "project\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:13"
             }
           },
           {
@@ -39,11 +39,11 @@
             "name": "I should see index page open.",
             "result": {
               "status": "passed",
-              "duration": 798996800
+              "duration": 419042900
             },
             "line": 8,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:18"
+              "location": "project\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:18"
             }
           },
           {
@@ -51,11 +51,11 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 565322800
+              "duration": 106103900
             },
             "hidden": true,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\runtime\\world.js:250"
+              "location": "project\\TravelFrontEndBarmy\\test\\runtime\\world.js:250"
             }
           }
         ],
@@ -78,7 +78,7 @@
         "line": 1
       }
     ],
-    "uri": "E:/agile/agileProjectTravel/New folder/TravelFrontEndBarmy/test/features/login.feature"
+    "uri": "E:/agile/new Agile project/TravelFrontEndBarmy/test/features/login.feature"
   },
   {
     "elements": [
@@ -94,11 +94,11 @@
             "name": "I am on the Registration page",
             "result": {
               "status": "passed",
-              "duration": 8262352700
+              "duration": 9188107900
             },
             "line": 6,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:4"
+              "location": "project\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:4"
             }
           },
           {
@@ -107,11 +107,24 @@
             "name": "I enter \"barmy\" as First Name and I enter \"bbarmy\" as last Name and I enter \"Nepal\" as country and I enter \"barmy@gmail.com\" as email and I enter \"barmy0123\" as password and I enter \"9865321245\" as phone number and I enter \"Damak\" as address",
             "result": {
               "status": "passed",
-              "duration": 137168000
+              "duration": 200300
             },
             "line": 7,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:10"
+              "location": "project\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:10"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I should direct to login page.",
+            "result": {
+              "status": "passed",
+              "duration": 997532301
+            },
+            "line": 8,
+            "match": {
+              "location": "project\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:14"
             }
           },
           {
@@ -119,11 +132,11 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 4087751300
+              "duration": 4336027899
             },
             "hidden": true,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\runtime\\world.js:250"
+              "location": "project\\TravelFrontEndBarmy\\test\\runtime\\world.js:250"
             }
           }
         ],
@@ -146,6 +159,6 @@
         "line": 1
       }
     ],
-    "uri": "E:/agile/agileProjectTravel/New folder/TravelFrontEndBarmy/test/features/register.feature"
+    "uri": "E:/agile/new Agile project/TravelFrontEndBarmy/test/features/register.feature"
   }
 ]
