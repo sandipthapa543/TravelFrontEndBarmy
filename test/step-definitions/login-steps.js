@@ -11,7 +11,7 @@ module.exports = function () {
 
     });
     this.When(/^I enter "([^"]*)" and I enter "([^"]*)" and I click login$/, function (userEmail, userPassword) {
-        const p = './page-objects/login';
+    
         return page.login.userInput(userEmail, userPassword);
     });
    
