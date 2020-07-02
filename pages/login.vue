@@ -26,6 +26,8 @@
             <v-text-field
               v-model="Email"
               label="Email"
+              id="email"
+              name="email"
               :rules="emailRules"
               outlined
               dense
@@ -39,6 +41,8 @@
               dense
               :rules="passwordRules"
               label="Password"
+              id="password"
+              name="password"
               prepend-inner-icon="mdi-lock"
               :append-icon="show ? 'mdi-eye-off' : 'mdi-eye'"
               @click:append="show = !show"

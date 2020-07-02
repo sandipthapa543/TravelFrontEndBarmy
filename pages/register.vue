@@ -22,6 +22,7 @@
             <v-text-field
               v-model="formValues.first_name"
               label="First Name"
+              name="fname"
               outlined
               dense
               prepend-inner-icon="mdi-account-box"
@@ -31,13 +32,14 @@
             <v-text-field
               v-model="formValues.last_name"
               label="Last Name"
+               name="lname"
               outlined
               dense
               prepend-inner-icon="mdi-account"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4" sm="6">
-            <v-select  outlined dense :items="countries" item-text="text" item-value="value" required v-model="formValues.country"
+            <v-select  outlined dense :items="countries" name ="country" item-text="text" item-value="value" required v-model="formValues.country"
                        label="Country" ></v-select>
           </v-col>
           <v-col cols="12" md="4" sm="6">
@@ -45,6 +47,7 @@
               v-model="formValues.email"
               type="email"
               label="Email"
+              name="email"
               outlined
               dense
               prepend-inner-icon="mdi-email"
@@ -59,6 +62,7 @@
               outlined
               dense
               label="Password"
+              name="password"
               prepend-inner-icon="mdi-lock"
             ></v-text-field>
           </v-col>
@@ -66,6 +70,7 @@
             <v-text-field
               v-model="formValues.contact"
               label="Phone"
+              name="phone"
               outlined
               dense
               prepend-inner-icon="mdi-phone"
@@ -75,6 +80,7 @@
             <v-text-field
               v-model="formValues.city"
               label="Address"
+              name="address"
               outlined
               dense
               prepend-inner-icon="mdi-home"

@@ -13,7 +13,7 @@
             "name": "I am on the Login page",
             "result": {
               "status": "passed",
-              "duration": 7722440000
+              "duration": 8170757200
             },
             "line": 6,
             "match": {
@@ -26,7 +26,7 @@
             "name": "I enter \"test@test.com\" and I enter \"testtesttest\" and I click login",
             "result": {
               "status": "passed",
-              "duration": 461407000
+              "duration": 127112399
             },
             "line": 7,
             "match": {
@@ -39,7 +39,7 @@
             "name": "I should see index page open.",
             "result": {
               "status": "passed",
-              "duration": 783720100
+              "duration": 798996800
             },
             "line": 8,
             "match": {
@@ -51,7 +51,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 154638500
+              "duration": 565322800
             },
             "hidden": true,
             "match": {
@@ -94,7 +94,7 @@
             "name": "I am on the Registration page",
             "result": {
               "status": "passed",
-              "duration": 7325261000
+              "duration": 8262352700
             },
             "line": 6,
             "match": {
@@ -107,7 +107,7 @@
             "name": "I enter \"barmy\" as First Name and I enter \"bbarmy\" as last Name and I enter \"Nepal\" as country and I enter \"barmy@gmail.com\" as email and I enter \"barmy0123\" as password and I enter \"9865321245\" as phone number and I enter \"Damak\" as address",
             "result": {
               "status": "passed",
-              "duration": 1021064400
+              "duration": 137168000
             },
             "line": 7,
             "match": {
@@ -119,7 +119,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 137816099
+              "duration": 4087751300
             },
             "hidden": true,
             "match": {
