@@ -28,7 +28,7 @@ var config = {
     sharedObjects: './shared-objects',
     featureFiles: './features',
     reports: './reports',
-    browser: 'firefox',
+    browser: 'chrome',
     
     browserTeardownStrategy: 'always',
     timeout: 15000

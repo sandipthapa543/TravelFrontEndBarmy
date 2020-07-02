@@ -13,11 +13,11 @@
             "name": "I am on the Login page",
             "result": {
               "status": "passed",
-              "duration": 4487363800
+              "duration": 7722440000
             },
             "line": 6,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:6"
+              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:7"
             }
           },
           {
@@ -26,11 +26,24 @@
             "name": "I enter \"test@test.com\" and I enter \"testtesttest\" and I click login",
             "result": {
               "status": "passed",
-              "duration": 314600699
+              "duration": 461407000
             },
             "line": 7,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:12"
+              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:13"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I should see index page open.",
+            "result": {
+              "status": "passed",
+              "duration": 783720100
+            },
+            "line": 8,
+            "match": {
+              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:18"
             }
           },
           {
@@ -38,7 +51,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 642960400
+              "duration": 154638500
             },
             "hidden": true,
             "match": {
@@ -81,7 +94,7 @@
             "name": "I am on the Registration page",
             "result": {
               "status": "passed",
-              "duration": 6463442200
+              "duration": 7325261000
             },
             "line": 6,
             "match": {
@@ -94,7 +107,7 @@
             "name": "I enter \"barmy\" as First Name and I enter \"bbarmy\" as last Name and I enter \"Nepal\" as country and I enter \"barmy@gmail.com\" as email and I enter \"barmy0123\" as password and I enter \"9865321245\" as phone number and I enter \"Damak\" as address",
             "result": {
               "status": "passed",
-              "duration": 449730300
+              "duration": 1021064400
             },
             "line": 7,
             "match": {
@@ -106,7 +119,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 610951201
+              "duration": 137816099
             },
             "hidden": true,
             "match": {

@@ -1,12 +1,13 @@
 module.exports = {
 
     url: 'http://localhost:3000/login',
-    //homepage: 'http://localhost:3000/index',
+    homepage: 'http://localhost:3000/index',
 
     elements: {
         Email: by.name('email'),
         Password: by.name('password'),
         loginButton: by.xpath('/html/body/div/div/div/div/main/div/div/div[1]/div/form/div[2]/div/button[1]/span'),
+      
     },
   
     userInput: function (userEmail,userPassword) {
