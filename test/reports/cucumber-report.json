@@ -13,11 +13,19 @@
             "name": "I am on the Login page",
             "result": {
               "status": "passed",
+<<<<<<< Updated upstream
               "duration": 8170757200
             },
             "line": 6,
             "match": {
               "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:7"
+=======
+              "duration": 6986661200
+            },
+            "line": 6,
+            "match": {
+              "location": "C:\\Users\\DELL\\WebstormProjects\\untitled2\\test\\step-definitions\\login-steps.js:6"
+>>>>>>> Stashed changes
             }
           },
           {
@@ -26,6 +34,7 @@
             "name": "I enter \"test@test.com\" and I enter \"testtesttest\" and I click login",
             "result": {
               "status": "passed",
+<<<<<<< Updated upstream
               "duration": 127112399
             },
             "line": 7,
@@ -44,6 +53,13 @@
             "line": 8,
             "match": {
               "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\login-steps.js:18"
+=======
+              "duration": 288975499
+            },
+            "line": 7,
+            "match": {
+              "location": "C:\\Users\\DELL\\WebstormProjects\\untitled2\\test\\step-definitions\\login-steps.js:12"
+>>>>>>> Stashed changes
             }
           },
           {
@@ -51,11 +67,15 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
+<<<<<<< Updated upstream
               "duration": 565322800
+=======
+              "duration": 1250725699
+>>>>>>> Stashed changes
             },
             "hidden": true,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\runtime\\world.js:250"
+              "location": "C:\\Users\\DELL\\WebstormProjects\\untitled2\\test\\runtime\\world.js:250"
             }
           }
         ],
@@ -78,7 +98,7 @@
         "line": 1
       }
     ],
-    "uri": "E:/agile/agileProjectTravel/New folder/TravelFrontEndBarmy/test/features/login.feature"
+    "uri": "C:/Users/DELL/WebstormProjects/untitled2/test/features/login.feature"
   },
   {
     "elements": [
@@ -94,11 +114,15 @@
             "name": "I am on the Registration page",
             "result": {
               "status": "passed",
+<<<<<<< Updated upstream
               "duration": 8262352700
+=======
+              "duration": 7339202101
+>>>>>>> Stashed changes
             },
             "line": 6,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:4"
+              "location": "C:\\Users\\DELL\\WebstormProjects\\untitled2\\test\\step-definitions\\register-steps.js:4"
             }
           },
           {
@@ -107,11 +131,15 @@
             "name": "I enter \"barmy\" as First Name and I enter \"bbarmy\" as last Name and I enter \"Nepal\" as country and I enter \"barmy@gmail.com\" as email and I enter \"barmy0123\" as password and I enter \"9865321245\" as phone number and I enter \"Damak\" as address",
             "result": {
               "status": "passed",
+<<<<<<< Updated upstream
               "duration": 137168000
+=======
+              "duration": 297896600
+>>>>>>> Stashed changes
             },
             "line": 7,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\step-definitions\\register-steps.js:10"
+              "location": "C:\\Users\\DELL\\WebstormProjects\\untitled2\\test\\step-definitions\\register-steps.js:10"
             }
           },
           {
@@ -119,11 +147,15 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
+<<<<<<< Updated upstream
               "duration": 4087751300
+=======
+              "duration": 1253732200
+>>>>>>> Stashed changes
             },
             "hidden": true,
             "match": {
-              "location": "folder\\TravelFrontEndBarmy\\test\\runtime\\world.js:250"
+              "location": "C:\\Users\\DELL\\WebstormProjects\\untitled2\\test\\runtime\\world.js:250"
             }
           }
         ],
@@ -146,6 +178,6 @@
         "line": 1
       }
     ],
-    "uri": "E:/agile/agileProjectTravel/New folder/TravelFrontEndBarmy/test/features/register.feature"
+    "uri": "C:/Users/DELL/WebstormProjects/untitled2/test/features/register.feature"
   }
 ]
