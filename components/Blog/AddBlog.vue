@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Create Activity
+      Create Blog
       <v-spacer></v-spacer>
       <v-btn icon @click="$emit('close')">
         <v-icon v-text="'mdi-close-circle'"></v-icon>
@@ -12,29 +12,22 @@
         <v-row>
           <v-col cols="6">
             <v-text-field
-              v-model="formValues.name"
-              label="Activity Name"
+              v-model="formValues.title"
+              label="Blog Title"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
           <v-col cols="6">
             <v-text-field
-              v-model="formValues.slug"
-              label="Slug"
+              v-model="formValues.contents"
+              label="Content"
               prepend-inner-icon="mdi-link"
-            ></v-text-field>
-          </v-col>
-          <v-col sm="12" md="6" cols="6">
-            <v-text-field
-              v-model="formValues.description"
-              label="Description"
-              prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
           <v-col cols="6">
             <v-file-input
               v-model="formValues.image"
-              label="Activity Image"
+              label="Product Image"
               :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-file-input>
@@ -51,7 +44,7 @@
         color="red darken-3"
         class="white--text text-capitalize"
         depressed
-        @click="createActivity"
+        @click="createBlog"
       >
         Save
       </v-btn>
@@ -76,38 +69,41 @@
         ],
         formValues: {
           "name": "",
-          "description": "",
+          "contents": "",
           "image": null,
-          "slug": ""
-        }
+          "likes":null,
+          user:this.$auth.user.id
+        },
+        blogPost:{}
       }
     },
     created() {
       this.formValues = this.actionData || {}
     },
     methods: {
-      createActivity () {
-        let formData = new FormData()
-        if(!(this.formValues.image instanceof File)) {
-          delete this.formValues.image
-          formData = {...this.formValues}
-        } else {
-          formData.append('name', this.formValues.name)
-          formData.append('description', this.formValues.description)
-          formData.append('image', this.formValues.image)
-          formData.append('slug', this.formValues.slug)
+      createBlog () {
+        if(this.$auth.loggedIn) {
+          this.blogPost.user=this.$auth.user.id
+          let formData = new FormData()
+          if (!(this.formValues.image instanceof File)) {
+            delete this.formValues.image
+            formData = {...this.formValues}
+          } else {
+            formData.append('title', this.formValues.title)
+            formData.append('contents', this.formValues.contents)
+            formData.append('image', this.formValues.image)
+          }
+          {
+            this.$axios.$post('blog/add/', formData)
+              .then(async (response) => {
+                this.setNotifyMessage({message: 'Successfully Created Blog.', color: 'green'})
+                this.$emit('close')
+              })
+              .catch(() => {
+                this.setNotifyMessage('Something went wrong.', 'red')
+              })
+          }
         }
-        {
-          this.$axios.$post('admin/activity/', formData)
-            .then(async (response) => {
-              this.setNotifyMessage({ message: 'Successfully Created Activity.', color: 'green'})
-              this.$emit('close')
-            })
-            .catch(() => {
-              this.setNotifyMessage('Something went wrong.', 'red')
-            })
-        }
-
       },
 
     }
