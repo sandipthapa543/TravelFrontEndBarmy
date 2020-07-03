@@ -5,6 +5,7 @@
   import AddActivity from "../../components/Activity/AddActivity";
   export  default {
     components: {AddActivity},
+    layout:'admin',
 
     data() {
       return {
