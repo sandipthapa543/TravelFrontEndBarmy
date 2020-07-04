@@ -16,8 +16,8 @@ module.exports = function () {
     });
    
     this.Then(/^I should see index page open\.$/, function () {
-        return driver.findElement(by.xpath('/html/body/div/div/div/div/main/div/div/div[1]/div/form/div[2]/div/button[1]/span')).click();
-       
+        return  driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div/div[1]/div/form/div[2]/div/button[1]/span')).click();
+   
             });
         }
 
