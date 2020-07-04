@@ -1,10 +1,11 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
+      dark
       app
     >
       <v-list>
@@ -18,25 +19,23 @@
           <v-list-item-title>Register</v-list-item-title>
         </v-list-item>
 
-        <v-list-item v-if="$auth.loggedIn" >
+        <v-list-item v-if="$auth.loggedIn">
           <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
-          <v-list-item-title>{{$auth.user.First_Name + ''+ $auth.user.Last_Name}}</v-list-item-title>
+          <v-list-item-title>{{
+            $auth.user.First_Name + " " + $auth.user.Last_Name
+          }}</v-list-item-title>
         </v-list-item>
-<!--        <v-list-item v-if="$auth.loggedIn" @click="$router.push('my/profile')">-->
-<!--          <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>-->
-<!--          <v-list-item-title>My Profile</v-list-item-title>-->
-<!--        </v-list-item>-->
-        <v-list-item  v-if="$auth.loggedIn"  @click="logout">
+        <!--        <v-list-item v-if="$auth.loggedIn" @click="$router.push('my/profile')">-->
+        <!--          <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>-->
+        <!--          <v-list-item-title>My Profile</v-list-item-title>-->
+        <!--        </v-list-item>-->
+        <v-list-item v-if="$auth.loggedIn" @click="logout">
           <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>
           <v-list-item-title>Logout</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
+    <v-app-bar :clipped-left="clipped" fixed app dark class="dark">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <!-- <v-btn
         icon
@@ -45,130 +44,187 @@
       </v-btn> -->
       <v-toolbar-title v-text="title" />
       <v-spacer />
-            <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
 
-
-       <v-btn
-        v-for="(link, i) in links"
-        :key="i"
-        :to="link.to"
-          router
-      >
-
+      <v-btn v-for="link in links" :key="link.title" :to="link.to" router>
         <v-text>{{ link.title }}</v-text>
       </v-btn>
     </v-app-bar>
-    <v-content>
-      <v-container>
-        <nuxt />
-       <vue-snackbar></vue-snackbar>
-      </v-container>
+    <v-content class="grey lighten-2">
+      <nuxt />
+      <vue-snackbar></vue-snackbar>
     </v-content>
-      <v-footer
-     :fixed="fixed"
-    dark
-    padless
-     justify="center"
-  >
-    <v-card
-      flat
-      tile
-      class="indigo lighten-1 white--text text-center"
-      width="100%"
-    >
-      <v-card-text>
-        <v-btn
-          v-for="icon in icons"
-          :key="icon"
-          class="mx-4 white--text"
-          icon
-        >
-          <v-icon size="24px">{{ icon }}</v-icon>
-        </v-btn>
-      </v-card-text>
-      <v-divider/>
-      <v-card-text class="white--text">
-         <span>&copy; {{ new Date().getFullYear() }} — <strong>Travel</strong> </span>
-      </v-card-text>
-    </v-card>
-  </v-footer>
+    <!-- body closed -->
+
+    <!-- Footer -->
+    <footer>
+      <v-card dark width="100%" class="v-sheet--tile">
+        <v-card-text class="text-center">
+          <h2 class="white--text">Associated with</h2>
+          <div>
+            <figure class="mx-2 pa-2 d-inline-block">
+              <img
+                src="http://localhost:3000/assoc.PNG"
+                alt="Logo"
+                width="100%"
+              />
+            </figure>
+            <!-- <figure class="mx-2 pa-2 d-inline-block" v-for="assoc in associated" :key="assoc">
+              <img
+                :src="assoc.image"
+                :alt="assoc.name"
+                width="100%"
+              />
+            </figure> -->
+          </div>
+        </v-card-text>
+        <v-container>
+          <v-row>
+            <v-col cols="6" md="3">
+              <h4>Inside Website</h4>
+              <ul class="pl-0">
+                <li v-for="link in links" :key="link.id">
+                  <a :href="link.to" class="anchor">{{link.title}}</a>
+                </li>
+              </ul>
+            </v-col>
+            <v-col cols="6" md="3">
+              <h4>Company Info</h4>
+              <ul class="pl-0">
+                <li v-for="link in links" :key="link.id">
+                  <a :href="link.to" class="anchor">{{link.title}}</a>
+                </li>
+              </ul>
+            </v-col>
+            <v-col cols="6" md="3">
+              <h4>New Links</h4>
+              <ul class="pl-0">
+                <li v-for="link in links" :key="link.id">
+                  <a :href="link.to" class="anchor">{{link.title}}</a>
+                </li>
+              </ul>
+            </v-col>
+            <v-col cols="6" md="3" class="text-center">
+              <h4>Visit us at</h4>
+            <v-btn
+              v-for="icon in icons"
+              :key="icon"
+              class="ma-4 white--text"
+              icon
+            >
+              <v-icon size="24px">{{ icon }}</v-icon>
+            </v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-divider/>
+        <v-card-text class="white--text mx-auto text-center">
+          <span>
+            Copyright &copy; {{ new Date().getFullYear() }} —
+            <strong>Travel and Tourism</strong></span
+          >
+        </v-card-text>
+      </v-card>
+    </footer>
   </v-app>
 </template>
 
+<style>
+  ul {
+    list-style: none;
+  }
+  .anchor {
+    text-decoration: none;
+    color: white !important;
+  }
+</style>
+
 <script>
-  import VueSnackbar from "../components/Common/VueSnackbar";
-  import { mapGetters, mapMutations } from "vuex"
+import VueSnackbar from "../components/Common/VueSnackbar";
+import { mapGetters, mapMutations } from "vuex";
 export default {
-  components: {VueSnackbar},
-  data () {
+  components: { VueSnackbar },
+  data() {
     return {
       clipped: false,
       drawer: false,
       fixed: false,
-       icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
+      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Login',
-          to: '/login'
+          icon: "mdi-apps",
+          title: "Login",
+          to: "/login"
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Register',
-          to: '/register'
+          icon: "mdi-chart-bubble",
+          title: "Register",
+          to: "/register"
         }
-      ], links: [
-         {
-          icon: 'mdi-apps',
-          title: 'Home',
-          to: '/'
-        }, {
-          icon: 'mdi-apps',
-          title: 'About Us',
-          to: '/about'
-        }, {
-          icon: 'mdi-apps',
-          title:'Services',
-          to: '/services'
-        }, {
-          icon: 'mdi-apps',
-          title: 'Blog',
-          to: '/blog'
+      ],
+      links: [
+        {
+          icon: "mdi-apps",
+          title: "Home",
+          to: "/"
         },
-         {
-          icon: 'mdi-apps',
-          title: 'Packages',
-          to: '/packages'
+        {
+          icon: "mdi-apps",
+          title: "About Us",
+          to: "/about"
         },
-          {
-          icon: 'mdi-apps',
-          title: 'Contact',
-          to: '/contact'
+        {
+          icon: "mdi-apps",
+          title: "Services",
+          to: "/services"
         },
+        {
+          icon: "mdi-apps",
+          title: "Blog",
+          to: "/blog"
+        },
+        {
+          icon: "mdi-apps",
+          title: "Packages",
+          to: "/packages"
+        },
+        {
+          icon: "mdi-apps",
+          title: "Contact",
+          to: "/contact"
+        }
+      ],
+      associated: [
+        {
+          id: 1,
+          name: "TAAN",
+          image: "https://static.acethehimalaya.com/uploads/2019/07/TAAN-Logo.png",
+          link: "http://taan.com"
+        },
+        {
+          id: 1,
+          name: "PATA",
+          image: "https://static.acethehimalaya.com/uploads/2019/07/pata-Logo.png",
+          link: "http://pata.com"
+        }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Travel'
-    }
+      title: "Travel"
+    };
   },
   created() {
-    if(this.$auth.loggedIn) {
-
+    if (this.$auth.loggedIn) {
     }
   },
   methods: {
-    logout () {
+    logout() {
       this.$auth.logout();
-      this.setNotifyMessage("Successfully Logout.")
+      this.setNotifyMessage("Successfully Logout.");
     }
   }
-}
+};
 </script>
