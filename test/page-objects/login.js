@@ -13,10 +13,7 @@ module.exports = {
 
         var selectorEmail = page.login.elements.Email;
         var selectorPassword = page.login.elements.Password;
-        
-
-
-        driver.findElement(selectorEmail).sendKeys(userEmail, selenium.Key.ENTER);
+                driver.findElement(selectorEmail).sendKeys(userEmail, selenium.Key.ENTER);
         driver.findElement(selectorPassword).sendKeys(userPassword, selenium.Key.ENTER);
 
 
