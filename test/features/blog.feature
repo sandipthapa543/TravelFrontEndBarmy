@@ -1,9 +1,9 @@
 @search
-Feature: add blog
+Feature: View blogs
  
-  
   Scenario: register user add blog
    Given I am logged in user
-   When I am on blog page
-   Then I enter
-   
+   Then I click on blog button 
+   Then I should see blog with name "Hidden kingdom of Nepal"
+
+ 
