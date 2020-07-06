@@ -194,6 +194,11 @@ export default {
           icon: "mdi-apps",
           title: "Contact",
           to: "/contact"
+        },
+        {
+          icon: "mdi-apps",
+          title: "Dashboard",
+          to: "admin/dashboard"
         }
       ],
       associated: [

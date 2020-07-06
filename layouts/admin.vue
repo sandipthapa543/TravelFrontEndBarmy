@@ -158,6 +158,11 @@
             icon: 'mdi-account-group',
             title: 'Activities',
             to: '/admin/Activity'
+          },
+          {
+            icon: 'mdi-account-book',
+            title: 'Blog',
+            to: '/admin/addBlogs'
           }
         ],
 
