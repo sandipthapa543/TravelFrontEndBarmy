@@ -13,21 +13,27 @@
           <v-col cols="6">
             <v-text-field
               v-model="formValues.title"
+              id="title"
               label="Blog Title"
+              name="title"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
           <v-col cols="6">
             <v-text-field
               v-model="formValues.contents"
+              id="content"
               label="Content"
+               name="content"
               prepend-inner-icon="mdi-link"
             ></v-text-field>
           </v-col>
           <v-col cols="6">
             <v-file-input
               v-model="formValues.image"
+              id="image"
               label="Product Image"
+              name="image"
               :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-file-input>

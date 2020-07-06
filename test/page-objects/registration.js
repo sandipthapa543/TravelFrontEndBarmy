@@ -10,7 +10,6 @@ module.exports = {
         Password: by.name('password'),
         Phone: by.name('phone'),
         Address: by.name('address'),
-        registerButton: by.xpath('/html/body/div/div/div/div/main/div/div/div[1]/div/div/div/form/div/div/div[2]/div/button/span')
     },
     userInput: function (userfname, userlname,ucountry,uemail,upassword,uphone,uaddress) {
         var selectorFnmae = page.registration.elements.FirstName;
@@ -29,7 +28,7 @@ module.exports = {
         driver.findElement(selectorPassword).sendKeys(upassword, selenium.Key.ENTER);
         driver.findElement(selectorPhone).sendKeys(uphone, selenium.Key.ENTER);
         driver.findElement(selectorAddress).sendKeys(uaddress, selenium.Key.ENTER);
-        return driver.findElement(selectorButton).click();
+      
 
     }
 };
