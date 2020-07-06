@@ -5,7 +5,7 @@ module.exports = {
     elements: {
         FirstName: by.name('fname'),
         LastName: by.name('lname'),
-        Country: by.name('country'),
+        Country: by.xpath('//*[@id="app"]/div/main/div/div[1]/form/div[1]/div[3]/div/div/div[1]/div[1]/div[1]'),
         Email: by.name('email'),
         Password: by.name('password'),
         Phone: by.name('phone'),
@@ -23,7 +23,8 @@ module.exports = {
 
         driver.findElement(selectorFnmae).sendKeys(userfname, selenium.Key.ENTER);
         driver.findElement(selectorLname).sendKeys(userlname, selenium.Key.ENTER);   
-        driver.findElement(selectorCountry).sendKeys(ucountry, selenium.Key.ENTER);
+        driver.findElement(selectorCountry).click();
+        driver.findElement(selectorLname).click();
         driver.findElement(selectorEmail).sendKeys(uemail, selenium.Key.ENTER);
         driver.findElement(selectorPassword).sendKeys(upassword, selenium.Key.ENTER);
         driver.findElement(selectorPhone).sendKeys(uphone, selenium.Key.ENTER);

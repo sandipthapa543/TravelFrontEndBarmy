@@ -26,7 +26,7 @@ var config = {
     steps: './step-definitions',
     pageObjects: './page-objects',
     sharedObjects: './shared-objects',
-    featureFiles: './features/blog.feature',
+    featureFiles: './features',
     reports: './reports',
     browser: 'chrome',
     
