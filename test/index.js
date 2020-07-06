@@ -23,10 +23,10 @@ function coerceInt(value, defaultValue) {
 }
 
 var config = {
-    steps: './step-definitions/',
-    pageObjects: './page-objects/',
+    steps: './step-definitions',
+    pageObjects: './page-objects',
     sharedObjects: './shared-objects',
-    featureFiles: './features/register.feature',
+    featureFiles: './features',
     reports: './reports',
     browser: 'chrome',
     

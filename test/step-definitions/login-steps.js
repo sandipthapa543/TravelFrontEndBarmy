@@ -11,15 +11,15 @@ module.exports = function () {
 
     });
     this.When(/^I enter "([^"]*)" and I enter "([^"]*)" and I click login$/, function (userEmail, userPassword) {
-    
+
         return page.login.userInput(userEmail, userPassword);
     });
-   
+
     this.Then(/^I should see index page open\.$/, function () {
-        return  driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div/div[3]/button')).click();
-   
-            });
-        }
+        return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div/div[3]/button')).click();
+
+    });
+}
 
 
 
