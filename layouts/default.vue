@@ -25,14 +25,22 @@
             $auth.user.First_Name + " " + $auth.user.Last_Name
           }}</v-list-item-title>
         </v-list-item>
-        <!--        <v-list-item v-if="$auth.loggedIn" @click="$router.push('my/profile')">-->
-        <!--          <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>-->
-        <!--          <v-list-item-title>My Profile</v-list-item-title>-->
-        <!--        </v-list-item>-->
-        <v-list-item v-if="$auth.loggedIn" @click="logout">
+
+        <v-list-item v-if="$auth.loggedIn">
           <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>
           <v-list-item-title>Logout</v-list-item-title>
         </v-list-item>
+        
+        <v-list-item v-if="$auth.loggedIn" to="/admin/dashboard">
+          <v-list-item-icon><v-icon>mdi-admin</v-icon></v-list-item-icon>
+          <v-list-item-title>Admin Dashboard</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item v-if="$auth.loggedIn" to="/admin/dashboard">
+          <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
+          <v-list-item-title>Profile</v-list-item-title>
+        </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app dark class="dark">
@@ -49,7 +57,7 @@
       </v-btn>
 
       <v-btn v-for="link in links" :key="link.title" :to="link.to" router>
-        <v-text>{{ link.title }}</v-text>
+        {{ link.title }}
       </v-btn>
     </v-app-bar>
     <v-content class="grey lighten-2">
@@ -177,8 +185,8 @@ export default {
         },
         {
           icon: "mdi-apps",
-          title: "Services",
-          to: "/services"
+          title: "Activities",
+          to: "/activities"
         },
         {
           icon: "mdi-apps",
@@ -194,11 +202,6 @@ export default {
           icon: "mdi-apps",
           title: "Contact",
           to: "/contact"
-        },
-        {
-          icon: "mdi-apps",
-          title: "Dashboard",
-          to: "admin/dashboard"
         }
       ],
       associated: [

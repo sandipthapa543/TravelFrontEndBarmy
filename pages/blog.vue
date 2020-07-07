@@ -9,53 +9,52 @@
             <v-img
               class="white--text align-end"
               height="200px"
-              :src="'http://localhost:8080/uploads/blogs/'+ `${item.Image}`"
+              :src="'http://localhost:8080/uploads/blogs/' + `${item.Image}`"
             >
             </v-img>
-            <v-btn
-                icon
-                @click="show = !show"
-            >
-                <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-            </v-btn>
+            <v-card-subtitle class="pb-0 d-flex">
+              <span>By: {{item.user_id}}</span>
+              <v-spacer></v-spacer>
+              <span>{{ item.createdAt.substring(0,10)}} </span>
+            </v-card-subtitle>
 
-            <v-expand-transition>
-            <div v-show="show">
-                <v-divider></v-divider>
+            <v-divider></v-divider>
 
-                    <v-card-text class="text--primary">
+            <v-card-text class="text--primary">
               <div>{{ item.Contents }}</div>
             </v-card-text>
-            </div>
-            </v-expand-transition>
             <v-card-actions>
               <v-btn color="primary">View more</v-btn>
-                </v-card-actions>
+            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
+    </v-container>
+    <v-container v-if="this.$auth.loggedIn">
+      <add-blog></add-blog>
     </v-container>
   </div>
 </template>
 
 <script>
+import AddBlog from "../components/Blog/AddBlog";
 export default {
+  components: { AddBlog },
   name: "LatestPost",
   data: () => ({
     show: false,
-    blogLists:[]
+    blogLists: []
   }),
   created() {
-    this.getBlog()
+    this.getBlog();
   },
 
-  methods:{
+  methods: {
     getBlog() {
-    this.$axios.$get('blog/all')
-      .then((response)=>{
-        this.blogLists= response
-      })
+      this.$axios.$get("blog/all").then(response => {
+        this.blogLists = response;
+      });
     }
   }
-}
+};
 </script>
