@@ -82,7 +82,4 @@ export default {
   text-shadow: 2px 2px #000;
   background: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.75));
 }
-.pointer {
-    cursor: pointer !important;
-}
 </style>

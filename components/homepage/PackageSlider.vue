@@ -5,14 +5,13 @@
     :show-arrows="showArrows"
   >
     <!-- <v-slide-item> -->
-      <v-scale-transition>
-        <v-row>
-          <v-col v-for="n in 15" :key="n">
-        <package></package>
-
-          </v-col>
-        </v-row>
-      </v-scale-transition>
+    <v-scale-transition>
+      <v-row>
+        <v-col v-for="(packitem,index) in packitems" :key="index">
+          <package :packitem="packitem"></package>
+        </v-col>
+      </v-row>
+    </v-scale-transition>
     <!-- </v-slide-item> -->
   </v-slide-group>
 </template>
@@ -22,6 +21,7 @@ import Package from "./SinglePackage";
 
 export default {
   components: { Package },
+  props: ["packitems"],
   data: () => ({
     showArrows: true,
     prevIcon: false,

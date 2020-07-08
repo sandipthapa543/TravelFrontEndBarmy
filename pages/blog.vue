@@ -5,7 +5,7 @@
       <v-row>
         <v-col v-for="(item, index) in blogLists" :key="index" cols="12" md="4">
           <v-card outlined class="mx-auto">
-            <v-card-title>{{ item.Title }}</v-card-title>
+            <v-card-title v-if="item.Title">{{ item.Title.length> 30 ? item.Title.substring(0,30) + "..": item.Title }}</v-card-title>
             <v-img
               class="white--text align-end"
               height="200px"
@@ -13,7 +13,7 @@
             >
             </v-img>
             <v-card-subtitle class="pb-0 d-flex">
-              <span>By: {{item.user_id}}</span>
+              <span>By: {{item.user.First_Name + " " + item.user.Last_Name}}</span>
               <v-spacer></v-spacer>
               <span>{{ item.createdAt.substring(0,10)}} </span>
             </v-card-subtitle>
@@ -21,10 +21,10 @@
             <v-divider></v-divider>
 
             <v-card-text class="text--primary">
-              <div>{{ item.Contents }}</div>
+              <p class="text-justify mb-0" style="min-height: 88px" v-if="item.Contents">{{ item.Contents.length > 200 ? item.Contents.substring(0,200)+"..." : item.Contents }}</p>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="primary">View more</v-btn>
+              <v-btn color="primary" :to="`/blog/`+item.Slug" >View more</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

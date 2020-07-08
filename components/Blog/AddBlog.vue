@@ -20,15 +20,6 @@
             ></v-text-field>
           </v-col>
           <v-col cols="6">
-            <v-text-field
-              v-model="formValues.contents"
-              id="content"
-              label="Content"
-               name="content"
-              prepend-inner-icon="mdi-link"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="6">
             <v-file-input
               v-model="formValues.image"
               id="image"
@@ -37,6 +28,15 @@
               :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-file-input>
+          </v-col>
+          <v-col cols="6">
+            <v-textarea
+              v-model="formValues.contents"
+              id="content"
+              label="Content"
+               name="content"
+              prepend-inner-icon="mdi-link"
+            ></v-textarea>
           </v-col>
         </v-row>
       </v-form>
