@@ -1,4 +1,3 @@
-
 <template>
   <!-- <v-row>
     <v-col>
@@ -20,11 +19,11 @@
   <div>
     <v-container>
       <h2 class="text-center font-weight-bold">Top Packages</h2>
-      <package></package>
+      <package :packitems="packitems"></package>
     </v-container>
     <v-container>
       <h2 class="text-center font-weight-bold">Recommended Packages</h2>
-      <slider/>
+      <slider :packitems="packitems"/>
     </v-container>
     <v-container>
       <h2 class="text-center font-weight-bold">Our Activities</h2>
@@ -39,24 +38,19 @@ import Package from "../components/homepage/PackageList";
 import Slider from "../components/homepage/PackageSlider";
 export default {
   components: { Activity, Package, Slider },
-  data() {
-    return {
-      items: [
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-        }
-      ]
-    };
+  data: () => ({
+    packitems: []
+  }),
+  created() {
+    this.getPackages();
+  },
+
+  methods: {
+    getPackages() {
+      this.$axios.$get("package/show").then(response => {
+        this.packitems = response;
+      });
+    }
   }
 };
 </script>
-

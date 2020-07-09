@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Create P
+      Create Packages
       <v-spacer></v-spacer>
       <v-btn icon @click="$emit('close')">
         <v-icon v-text="'mdi-close-circle'"></v-icon>
@@ -78,13 +78,6 @@
             <v-text-field
               v-model="formValues.best_season"
               label="Best Season"
-              prepend-inner-icon="mdi-file"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="6">
-            <v-text-field
-              v-model="formValues.name"
-              label="Slug"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
@@ -225,11 +218,8 @@
           formData.append('highest_point', this.formValues.highest_point)
           formData.append('starting_point', this.formValues.starting_point)
           formData.append('gears_required', this.formValues.gears_required)
-          formData.append('slug', this.formValues.name)
           formData.append('description', this.formValues.description)
           formData.append('country', this.formValues.country)
-
-
         }
         {
           this.$axios.$post('admin/package/', formData)

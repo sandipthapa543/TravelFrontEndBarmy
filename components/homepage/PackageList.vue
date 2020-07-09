@@ -1,15 +1,17 @@
 <template>
   <v-row>
-    <v-col v-for="i in 8" :key="i" cols="12" sm="6" md="3">
-        <package-one/>
+    <v-col v-for="(packitem,index) in packitems" :key="index" cols="12" sm="6" md="4">
+        <package-one :packitem="packitem" />
     </v-col>
+    <!-- <p>{{packitems}}</p> -->
   </v-row>
 </template>
 
 <script>
 import PackageOne from "./SinglePackage";
 export default {
-    components: {PackageOne}
+    components: {PackageOne},
+    props: ['packitems']
 };
 </script>
 

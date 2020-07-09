@@ -30,7 +30,7 @@
           <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>
           <v-list-item-title>Logout</v-list-item-title>
         </v-list-item>
-        
+
         <v-list-item v-if="$auth.loggedIn" to="/admin/dashboard">
           <v-list-item-icon><v-icon>mdi-admin</v-icon></v-list-item-icon>
           <v-list-item-title>Admin Dashboard</v-list-item-title>
@@ -40,7 +40,6 @@
           <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
           <v-list-item-title>Profile</v-list-item-title>
         </v-list-item>
-
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app dark class="dark">
@@ -93,41 +92,59 @@
             <v-col cols="6" md="3">
               <h4>Inside Website</h4>
               <ul class="pl-0">
-                <li v-for="link in links" :key="link.id">
-                  <a :href="link.to" class="anchor">{{link.title}}</a>
+                <li
+                  v-for="link in links"
+                  :key="link.id"
+                  @click="$router.push(link.to)"
+                  class="pointer my-1"
+                >
+                  <!-- <a :to="link.to" class="anchor" router>{{link.title}}</a> -->
+                  {{ link.title }}
                 </li>
               </ul>
             </v-col>
             <v-col cols="6" md="3">
               <h4>Company Info</h4>
               <ul class="pl-0">
-                <li v-for="link in links" :key="link.id">
-                  <a :href="link.to" class="anchor">{{link.title}}</a>
+                <li
+                  v-for="link in links"
+                  :key="link.id"
+                  @click="$router.push(link.to)"
+                  class="pointer my-1"
+                >
+                  <!-- <a :to="link.to" class="anchor" router>{{link.title}}</a> -->
+                  {{ link.title }}
                 </li>
               </ul>
             </v-col>
             <v-col cols="6" md="3">
               <h4>New Links</h4>
               <ul class="pl-0">
-                <li v-for="link in links" :key="link.id">
-                  <a :href="link.to" class="anchor">{{link.title}}</a>
+                <li
+                  v-for="link in links"
+                  :key="link.id"
+                  @click="$router.push(link.to)"
+                  class="pointer my-1"
+                >
+                  <!-- <a :to="link.to" class="anchor" router>{{link.title}}</a> -->
+                  {{ link.title }}
                 </li>
               </ul>
             </v-col>
             <v-col cols="6" md="3" class="text-center">
               <h4>Visit us at</h4>
-            <v-btn
-              v-for="icon in icons"
-              :key="icon"
-              class="ma-4 white--text"
-              icon
-            >
-              <v-icon size="24px">{{ icon }}</v-icon>
-            </v-btn>
+              <v-btn
+                v-for="icon in icons"
+                :key="icon"
+                class="ma-4 white--text"
+                icon
+              >
+                <v-icon size="24px">{{ icon }}</v-icon>
+              </v-btn>
             </v-col>
           </v-row>
         </v-container>
-        <v-divider/>
+        <v-divider />
         <v-card-text class="white--text mx-auto text-center">
           <span>
             Copyright &copy; {{ new Date().getFullYear() }} —
@@ -140,13 +157,16 @@
 </template>
 
 <style>
-  ul {
-    list-style: none;
-  }
-  .anchor {
-    text-decoration: none;
-    color: white !important;
-  }
+ul {
+  list-style: none;
+}
+.anchor {
+  text-decoration: none;
+  color: white !important;
+}
+.pointer {
+  cursor: pointer !important;
+}
 </style>
 
 <script>
@@ -208,13 +228,15 @@ export default {
         {
           id: 1,
           name: "TAAN",
-          image: "https://static.acethehimalaya.com/uploads/2019/07/TAAN-Logo.png",
+          image:
+            "https://static.acethehimalaya.com/uploads/2019/07/TAAN-Logo.png",
           link: "http://taan.com"
         },
         {
           id: 1,
           name: "PATA",
-          image: "https://static.acethehimalaya.com/uploads/2019/07/pata-Logo.png",
+          image:
+            "https://static.acethehimalaya.com/uploads/2019/07/pata-Logo.png",
           link: "http://pata.com"
         }
       ],
