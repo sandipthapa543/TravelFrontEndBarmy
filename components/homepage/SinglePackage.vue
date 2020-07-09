@@ -10,7 +10,8 @@
     {{ packitem.Package_Name }}</h4>
     <!-- <v-divider></v-divider> -->
     <v-card-subtitle class="py-1 d-flex">
-      <span>{{ packitem.activity.Activity_Name }}</span>
+      <span v-if="packitem.activity">{{ packitem.activity.Activity_Name }}</span>
+      <span v-else>{{ activity }}</span>
       <v-spacer></v-spacer>
       <v-rating
         :value="4.3"
@@ -65,7 +66,8 @@
 <script>
 export default {
   props: {
-    packitem: {}
+    packitem: {},
+    activity: ""
   }
 };
 </script>

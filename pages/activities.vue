@@ -51,7 +51,6 @@ Planning a trip to Nepal but wondering what you have in store other than trekkin
         <v-list-item
           v-for="subItem in item.itemss"
           :key="subItem.titles"
-          @click=""
         >
           <v-list-item-content>
             <v-list-item-title v-text="subItem.titles"></v-list-item-title>
