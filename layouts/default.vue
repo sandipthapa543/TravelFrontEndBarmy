@@ -167,6 +167,13 @@ ul {
 .pointer {
   cursor: pointer !important;
 }
+.ts {
+  text-shadow: 2px 2px #000;
+  background: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 1));
+}
+.v-breadcrumbs__item {
+  color: black !important;
+}
 </style>
 
 <script>

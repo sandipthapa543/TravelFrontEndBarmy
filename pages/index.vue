@@ -27,28 +27,35 @@
     </v-container>
     <v-container>
       <h2 class="text-center font-weight-bold">Our Activities</h2>
-      <activity></activity>
+      <activity :activities="activities"></activity>
     </v-container>
   </div>
 </template>
 
 <script>
-import Activity from "../components/homepage/Activity";
+import Activity from "../components/homepage/ActivityLists";
 import Package from "../components/homepage/PackageList";
 import Slider from "../components/homepage/PackageSlider";
 export default {
   components: { Activity, Package, Slider },
   data: () => ({
-    packitems: []
+    packitems: [],
+    activities: []
   }),
   created() {
     this.getPackages();
+    this.getActivities();
   },
 
   methods: {
     getPackages() {
       this.$axios.$get("package/show").then(response => {
         this.packitems = response;
+      });
+    },
+    getActivities() {
+      this.$axios.$get("package/activity").then(response => {
+        this.activities = response;
       });
     }
   }
