@@ -53,11 +53,6 @@
   </div>
 </template>
 
-<style>
-.v-breadcrumbs__item {
-  color: black !important;
-}
-</style>
 
 <script>
 import Package from "../../components/homepage/PackageList";
