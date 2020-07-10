@@ -18,7 +18,7 @@
             <v-card-title
               class="pt-0 pointer"
               v-text="activity.Activity_Name"
-              @click="$router.push('/activity/' + activity.Slug)"
+              @click="$router.push('/activities/' + activity.Slug)"
             ></v-card-title>
             <v-card-subtitle
               class="pb-1"

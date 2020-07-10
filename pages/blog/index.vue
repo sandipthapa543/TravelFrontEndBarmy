@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import AddBlog from "../components/Blog/AddBlog";
+import AddBlog from "../../components/Blog/AddBlog";
 export default {
   components: { AddBlog },
   name: "LatestPost",

@@ -92,7 +92,6 @@ export default {
           this.items.push({
             text: response.Activity_Name,
             disabled: true,
-            to: "/"
           });
         });
     },
