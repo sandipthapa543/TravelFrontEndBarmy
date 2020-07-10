@@ -8,15 +8,13 @@ module.exports = (async function () {
 
     this.Given(/^I am in index page$/, function () {
        return helpers.loadPage(page.activity.url);
-
     });
 
     this.Then(/^I click on activity shown$/, function () {
-        return helpers.loadPage(page.activity.act_url);
-
-    });
+            return helpers.loadPage("http://localhost:3000/activities/hiking-and-camping.");
+            });
     this.Then(/^I should see activity with name "([^"]*)"$/, function (expectedText) {
-        return driver.findElement(by.xpath('//*[@id="cliks"]')).getText()
+         return driver.findElement(by.id("act_title")).getText()
             .then(textcheck => {
                 assert.equal(expectedText, textcheck);
             });

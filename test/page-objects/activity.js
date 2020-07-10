@@ -1,5 +1,5 @@
 module.exports = {
 
-    url:("http://localhost:3000/"),
-    act_url:("http://localhost:3000/activities/hiking-and-camping.")
+    url:("http://localhost:3000/activities"),
+   
 }
