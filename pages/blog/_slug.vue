@@ -15,8 +15,8 @@
             <span>{{ blogs.createdAt.substring(0, 10) }}</span>
           </v-card-subtitle>
 
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
+          <v-img v-if="blogs.Image"
+            :src="`http://localhost:8080/uploads/blogs/${blogs.Image}`"
             height="300"
           ></v-img>
 
@@ -116,7 +116,7 @@ export default {
   },
   methods: {
     getSingleBlog() {
-      this.$axios.$get("blog/" + this.$route.params.slug).then(response => {
+      this.$axios.$get(`blog/${this.$route.params.slug}`).then(response => {
         this.blogs = response;
       });
     },
@@ -137,3 +137,5 @@ export default {
 </script>
 
 <style></style>
+
+

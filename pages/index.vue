@@ -23,7 +23,7 @@
     </v-container>
     <v-container>
       <h2 class="text-center font-weight-bold">Recommended Packages</h2>
-      <slider :packitems="packitems"/>
+      <slider :packitems="packitems" />
     </v-container>
     <v-container>
       <h2 class="text-center font-weight-bold">Our Activities</h2>
@@ -37,6 +37,15 @@ import Activity from "../components/homepage/ActivityLists";
 import Package from "../components/homepage/PackageList";
 import Slider from "../components/homepage/PackageSlider";
 export default {
+  head: {
+    title: "Travel and Tourism App",
+    meta: [
+      { hid: 'description', name: 'description', content: 'Home page description' }
+    ],
+    noscript: [
+      { innerHTML: 'Body No Scripts', body: true }
+    ],
+  },
   components: { Activity, Package, Slider },
   data: () => ({
     packitems: [],
@@ -49,12 +58,12 @@ export default {
 
   methods: {
     getPackages() {
-      this.$axios.$get("package/show").then(response => {
+      this.$axios.$get("package/show?limit=1").then(response => {
         this.packitems = response;
       });
     },
     getActivities() {
-      this.$axios.$get("package/activity").then(response => {
+      this.$axios.$get("package/activity?limit=2").then(response => {
         this.activities = response;
       });
     }
