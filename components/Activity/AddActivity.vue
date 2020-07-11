@@ -66,6 +66,7 @@ export default {
       },
       nameRules: [v => !!v || "This field is required."],
       formValues: {
+        id:"",
         name: "",
         description: "",
         image: null,
@@ -88,21 +89,37 @@ export default {
         formData.append("image", this.formValues.image);
         formData.append("slug", this.formValues.slug);
       }
-      {
-        this.$axios
-          .$post("admin/activity/", formData)
-          .then(async response => {
-            this.setNotifyMessage({
-              message: "Successfully Created Activity.",
-              color: "green"
+
+        if (this.formValues.id) {
+          this.$axios.$put(`admin/${this.formValues.id}/`, formData)
+            .then(async response => {
+              this.setNotifyMessage({
+                message: 'successfully updated',
+                color: "green"
+              })
+            })
+            .catch(() => {
+              this.setNotifyMessage({
+                message: "something went wrong",
+                color: "red"
+              })
+            })
+        }
+        else {
+          this.$axios
+            .$post("admin/activity/", formData)
+            .then(async response => {
+              this.setNotifyMessage({
+                message: "Successfully Created Activity.",
+                color: "green"
+              });
+              this.$emit("close");
+            })
+            .catch(() => {
+              this.setNotifyMessage("Something went wrong.", "red");
             });
-            this.$emit("close");
-          })
-          .catch(() => {
-            this.setNotifyMessage("Something went wrong.", "red");
-          });
+        }
       }
     }
-  }
 };
 </script>
