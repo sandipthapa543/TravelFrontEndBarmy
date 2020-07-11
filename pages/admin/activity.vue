@@ -47,7 +47,7 @@
       </v-data-table>
     </v-card>
     <v-dialog v-model="addActivity" width="960" persistent>
-      <add-activity v-if="addActivity" :action-data="activity"  @close="addActivity = false, getActivity()"></add-activity>
+      <add-activity v-if="addActivity" :action-data="activity"  @close="addActivity = false, getActivity(), activity={}"></add-activity>
     </v-dialog>
 
     <v-dialog
@@ -81,16 +81,13 @@
   export  default {
     components: {AddActivity},
     layout: 'admin',
-    prop:{
-      activity:{
-      }
-    },
     data() {
       return {
         choices: [],
         addActivity: false,
         deleteId: '',
         deleteForm: false,
+        activity:{},
         activityList:[],
 
 

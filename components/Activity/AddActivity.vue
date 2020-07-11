@@ -66,11 +66,6 @@ export default {
       },
       nameRules: [v => !!v || "This field is required."],
       formValues: {
-        id:"",
-        name: "",
-        description: "",
-        image: null,
-        slug: ""
       }
     };
   },
@@ -82,7 +77,7 @@ export default {
       let formData = new FormData();
       if (!(this.formValues.image instanceof File)) {
         delete this.formValues.image;
-        formData = { ...this.formValues };
+        formData = {...this.formValues};
       } else {
         formData.append("name", this.formValues.name);
         formData.append("description", this.formValues.description);
@@ -90,36 +85,42 @@ export default {
         formData.append("slug", this.formValues.slug);
       }
 
-        if (this.formValues.id) {
-          this.$axios.$put(`admin/${this.formValues.id}/`, formData)
-            .then(async response => {
-              this.setNotifyMessage({
-                message: 'successfully updated',
-                color: "green"
-              })
-            })
-            .catch(() => {
-              this.setNotifyMessage({
-                message: "something went wrong",
-                color: "red"
-              })
-            })
-        }
-        else {
-          this.$axios
-            .$post("admin/activity/", formData)
-            .then(async response => {
-              this.setNotifyMessage({
-                message: "Successfully Created Activity.",
-                color: "green"
-              });
-              this.$emit("close");
-            })
-            .catch(() => {
-              this.setNotifyMessage("Something went wrong.", "red");
+      if (this.formValues.id) {
+        this.updateActivity();
+      } else {
+        this.$axios
+          .$post("admin/activity/", formData)
+          .then(async response => {
+            this.setNotifyMessage({
+              message: "Successfully Created Activity.",
+              color: "green"
             });
-        }
+            this.$emit("close");
+          })
+          .catch(() => {
+            this.setNotifyMessage("Something went wrong.", "red");
+          });
       }
+    },
+    updateActivity() {
+      const dataPost = {
+        Activity_Name: this.formValues.name,
+        Contents:this.formValues.description
+      }
+      this.$axios.$put(`admin/${this.formValues.id}/`, dataPost)
+        .then(async response => {
+          this.setNotifyMessage({
+            message: 'successfully updated',
+            color: "green"
+          })
+        })
+        .catch(() => {
+          this.setNotifyMessage({
+            message: "something went wrong",
+            color: "red"
+          })
+        })
     }
+  }
 };
 </script>
