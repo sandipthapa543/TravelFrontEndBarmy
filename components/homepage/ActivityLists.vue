@@ -18,15 +18,16 @@
             <v-card-title
               class="pt-0 pointer"
               v-text="activity.Activity_Name"
-              @click="$router.push('/activities/' + activity.Slug)"
+              @click="$router.push(`/activities/${activity.Slug}`)"
+              :id="activity.Slug"
             ></v-card-title>
             <v-card-subtitle
               class="pb-1"
               style="color: white !important"
               v-text="
                 activity.packages.length === 1
-                  ? activity.packages.length + ` Package`
-                  : activity.packages.length + ` Packages`
+                  ? `${activity.packages.length} Package`
+                  : `${activity.packages.length} Packages`
               "
             ></v-card-subtitle>
           </div>
