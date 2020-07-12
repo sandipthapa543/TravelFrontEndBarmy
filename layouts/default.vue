@@ -152,6 +152,20 @@
           >
         </v-card-text>
       </v-card>
+      <v-btn
+            v-scroll="onScroll"
+            v-show="display"
+            fixed
+            bottom
+            right
+            fab
+            @click="backToTop"
+            color="primary"
+            dark
+          >
+            <v-icon dark>mdi-arrow-up</v-icon>
+          </v-btn>
+
     </footer>
   </v-app>
 </template>
@@ -183,6 +197,8 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+          display: false,
+
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       items: [
         {
@@ -258,6 +274,14 @@ export default {
     logout() {
       this.$auth.logout();
       this.setNotifyMessage("Successfully Logout.");
+    },
+    onScroll (e) {
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset ||   e.target.scrollTop || 0
+      this.display = top > 200
+    },
+    backToTop() {
+      this.$vuetify.goTo(0)
     }
   }
 };

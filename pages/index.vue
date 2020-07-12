@@ -23,7 +23,7 @@
     </v-container>
     <v-container>
       <h2 class="text-center font-weight-bold">Recommended Packages</h2>
-      <slider :packitems="packitems" />
+      <slider :packitems="sliderItems" />
     </v-container>
     <v-container>
       <h2 class="text-center font-weight-bold">Our Activities</h2>
@@ -49,21 +49,28 @@ export default {
   components: { Activity, Package, Slider },
   data: () => ({
     packitems: [],
-    activities: []
+    activities: [],
+    sliderItems: []
   }),
   created() {
     this.getPackages();
+    this.getSlider();
     this.getActivities();
   },
 
   methods: {
     getPackages() {
-      this.$axios.$get("package/show?limit=1").then(response => {
+      this.$axios.$get("package/show?sort=id&order=ASC&limit=6").then(response => {
         this.packitems = response;
       });
     },
+    getSlider() {
+      this.$axios.$get("package/show?sort=Price&order=DESC&limit=6").then(response => {
+        this.sliderItems = response;
+      });
+    },
     getActivities() {
-      this.$axios.$get("package/activity?limit=2").then(response => {
+      this.$axios.$get("package/activity?limit=4").then(response => {
         this.activities = response;
       });
     }
