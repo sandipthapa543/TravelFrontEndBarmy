@@ -14,7 +14,7 @@ module.exports = (async function () {
             return helpers.loadPage("http://localhost:3000/activities/hiking-and-camping.");
             });
     this.Then(/^I should see activity with name "([^"]*)"$/, function (expectedText) {
-         return driver.findElement(by.id("act_title")).getText()
+         return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div[1]/div[3]/h1')).getText()
             .then(textcheck => {
                 assert.equal(expectedText, textcheck);
             });

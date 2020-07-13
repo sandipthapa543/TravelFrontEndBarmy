@@ -26,12 +26,12 @@ var config = {
     steps: './step-definitions',
     pageObjects: './page-objects',
     sharedObjects: './shared-objects',
-    featureFiles: './features/blog.feature',
+    featureFiles: './features/',
     reports: './reports',
     browser: 'chrome',
     
     browserTeardownStrategy: 'always',
-    timeout: 15000
+    timeout: 1500000
 };
 
 var configFileName = path.resolve(process.cwd(), 'selenium-cucumber-js.json');
