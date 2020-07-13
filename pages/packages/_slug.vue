@@ -201,11 +201,17 @@
             ><sup>$</sup>{{ formatPrice(packs.Price) }} <small>USD</small></span
           >
 
-          <v-btn block color="warning" class="mt-4" tile @click.stop="dialog = true">
+          <v-btn
+            block
+            color="warning"
+            class="mt-4"
+            tile
+            @click.stop="dialog = true"
+          >
             Enquire Now
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
-          <!-- <enquire></enquire> -->
+
           <v-btn block color="success" class="mt-4" tile>
             Book this trip
             <v-icon size="20" right>mdi-arrow-right</v-icon>
@@ -213,13 +219,63 @@
         </div>
       </v-col>
     </v-row>
+    <!-- Dialog box (MODAL) STARTS -->
+    <v-dialog v-model="dialog" max-width="500">
+      <v-card>
+        <v-card-title class="headline">Package Enquiry</v-card-title>
+
+        <v-form>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <p v-text="packs.Package_Name" class="text-center"></p>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="formValues.People"
+                  label="No. of People"
+                  outlined
+                  dense
+                  id="people"
+                  name="people"
+                  type="number"
+                />
+              </v-col>
+              <v-col cols="12">
+                <v-textarea
+                  v-model="formValues.Message"
+                  label="Message"
+                  outlined
+                  dense
+                  id="message"
+                  name="message"
+                ></v-textarea>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn color="green darken-1" text @click="dialog = false">
+            Cancel
+          </v-btn>
+
+          <v-btn color="green darken-1" text @click="postInquiry">
+            Submit
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
-  // import { Enquire } from "../../components/Packages/inquiry";
+// import { AddInquiry } from "../../components/Packages/Inquiry";
 export default {
-  // components: Enquire,
+  // components: { AddInquiry },
   data: () => ({
+    dialog: false,
     packs: {},
     items: [
       {
@@ -232,7 +288,12 @@ export default {
         disabled: false,
         href: "/packages"
       }
-    ]
+    ],
+    formValues: {
+          People: "",
+          Message: "",
+          package_id:""
+        },
   }),
   created() {
     this.getPackage();
@@ -257,6 +318,31 @@ export default {
     formatPrice(value) {
       let val = (value / 1).toFixed(0);
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    postInquiry() {
+      if (this.$auth.loggedIn) {
+        let inqData = {
+          People: this.formValues.People,
+          Message: this.formValues.Message,
+          user_id: this.$auth.user.id,
+          package_id: this.packs.id,
+        };
+        this.$axios
+          .$post("user/inquiry", inqData)
+          .then(async response => {
+            this.setNotifyMessage({
+              message: "Successfully Created Blog.",
+              color: "green"
+            });
+            this.$emit("close");
+          })
+          .catch(() => {
+            this.setNotifyMessage({
+              message: "Something went wrong.",
+              color: "red"
+            });
+          });
+      }
     }
   }
 };
