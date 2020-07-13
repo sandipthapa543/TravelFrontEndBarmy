@@ -157,7 +157,7 @@
 
   export default {
     props: {
-      actionData: Object
+      actionData: Object,
     },
 
     data () {
@@ -198,9 +198,9 @@
       this.getActivity()
     },
     methods: {
-      createProduct () {
+      createProduct() {
         let formData = new FormData()
-        if(!(this.formValues.image instanceof File)) {
+        if (!(this.formValues.image instanceof File)) {
           delete this.formValues.image
           formData = {...this.formValues}
         } else {
@@ -221,11 +221,14 @@
           formData.append('description', this.formValues.description)
           formData.append('country', this.formValues.country)
         }
-        {
+        if (this.formValues.id) {
+          this.updatePackages();
+        } else {
           this.$axios.$post('admin/package/', formData)
             .then(async (response) => {
-              this.setNotifyMessage({ message: 'Successfully Created Product.', color: 'green'})
+              this.setNotifyMessage({message: 'Successfully Created Product.', color: 'green'})
               this.$emit('close')
+
             })
             .catch(() => {
               this.setNotifyMessage('Something went wrong.', 'red')
@@ -233,13 +236,40 @@
         }
 
       },
-      getActivity () {
+      getActivity() {
         this.$axios.$get('package/activity')
-          .then((response)=> {
+          .then((response) => {
             this.choices = response
           })
       },
+      updatePackages() {
+        let dataPost={
+          Package_Name:this.formValues.name,
+          Days:this.formValues.days,
+          Price:this.formValues.price,
+          Includes:this.formValues.includes,
+          Excludes:this.formValues.excludes,
+          Itinerary:this.formValues.itinerary,
+          Difficulty_level:this.formValues.difficulty_level,
+          Description:this.formValues.description,
+          Country:this.formValues.country,
+          Best_season:this.formValues.best_season,
+          Accomodation:this.formValues.accomodation,
+          Highest_point:this.formValues.highest_point,
+          Starting_point:this.formValues.starting_point,
+          Gears_required:this.formValues.gears_required,
+          activityId:this.formValues.activity_id,
 
+        }
+        this.$axios.$put(`admin/packages/${this.formValues.id}`, dataPost)
+          .then(async (response) => {
+            this.setNotifyMessage({message: 'successfully Updated', color: 'green'})
+            this.$emit('close')
+          })
+          .catch(() => {
+            this.setNotifyMessage('Something went wrong', red)
+          })
+      }
     }
   }
 </script>
