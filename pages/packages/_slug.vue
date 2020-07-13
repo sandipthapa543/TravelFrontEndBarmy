@@ -1,0 +1,316 @@
+<template>
+  <div>
+    <v-img
+      v-if="packs.Image"
+      class="white--text align-end"
+      height="480"
+      :src="`http://localhost:8080/uploads/packages/${packs.Image}`"
+      alt="Package"
+    >
+      <h1 class="ts text-uppercase text-center">
+        {{ packs.Package_Name }}
+      </h1>
+    </v-img>
+    <div style="background: cadetblue">
+      <v-breadcrumbs :items="items" class="container">
+        <template v-slot:divider>
+          <v-icon>mdi-forward</v-icon>
+        </template>
+      </v-breadcrumbs>
+    </div>
+
+    <v-toolbar flat color="primary" dark>
+      <v-toolbar-title class="mx-auto">What we offer</v-toolbar-title>
+    </v-toolbar>
+    <v-row>
+      <v-col cols="12" md="9">
+        <v-tabs vertical>
+          <v-tab>
+            <v-icon left>mdi-book-open</v-icon>
+            Overview
+          </v-tab>
+          <v-tab>
+            <v-icon left>mdi-watch</v-icon>
+            Itinerary
+          </v-tab>
+          <v-tab>
+            <v-icon left>mdi-access-point</v-icon>
+            Accommodation
+          </v-tab>
+          <v-tab>
+            <v-icon left>mdi-checkbox-multiple-marked</v-icon>
+            Inclusion
+          </v-tab>
+          <v-tab>
+            <v-icon left>mdi-star-circle</v-icon>
+            Review
+          </v-tab>
+
+          <!-- Overview -->
+          <v-tab-item>
+            <v-card flat>
+              <v-card-title>Overview</v-card-title>
+              <v-card-text>
+                <v-row>
+                  <v-col cols="4">
+                    <div class="fact-item" color="primary">
+                      <v-icon dark class="icon-own">mdi-currency-usd</v-icon>
+                      <span class="py-3 mx-auto"
+                        ><b>Price</b><br />$
+                        {{ formatPrice(packs.Price) }}</span
+                      >
+                    </div>
+                  </v-col>
+                  <v-col cols="4">
+                    <div class="fact-item" color="primary">
+                      <v-icon dark class="icon-own">mdi-calendar-check</v-icon>
+                      <span class="py-3 mx-auto"
+                        ><b>Duration</b><br />{{ packs.Days }} days</span
+                      >
+                    </div>
+                  </v-col>
+                  <v-col cols="4">
+                    <div class="fact-item" color="primary">
+                      <v-icon dark class="icon-own">mdi-flag</v-icon>
+                      <span class="py-3 mx-auto"
+                        ><b>Country</b><br />{{ packs.Country }}</span
+                      >
+                    </div>
+                  </v-col>
+                  <v-col cols="4">
+                    <div class="fact-item" color="primary">
+                      <v-icon dark class="icon-own">mdi-elevation-rise</v-icon>
+                      <span class="py-3 mx-auto"
+                        ><b>Max Altitude</b><br />{{
+                          packs.Highest_point
+                        }}</span
+                      >
+                    </div>
+                  </v-col>
+                  <v-col cols="4">
+                    <div class="fact-item" color="primary">
+                      <v-icon dark class="icon-own">mdi-clock</v-icon>
+                      <span class="py-3 mx-auto"
+                        ><b>Best Season</b><br />{{ packs.Best_season }}</span
+                      >
+                    </div>
+                  </v-col>
+                  <v-col cols="4">
+                    <div class="fact-item" color="primary">
+                      <v-icon dark class="icon-own">mdi-earth</v-icon>
+                      <span class="py-3 mx-auto"
+                        ><b>Starting Point</b><br />{{
+                          packs.Starting_point
+                        }}</span
+                      >
+                    </div>
+                  </v-col>
+                </v-row>
+
+                <p class="text-justify mt-3" v-text="packs.Package_Name"></p>
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+          <!-- Itinerary -->
+          <v-tab-item>
+            <v-card flat>
+              <v-card-title>Itinerary</v-card-title>
+              <v-card-text>
+                <p v-text="packs.Itinerary" class="mb-0"></p>
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+          <!-- Accommodation -->
+          <v-tab-item>
+            <v-card flat>
+              <v-card-title>Accomodation</v-card-title>
+              <v-card-text>
+                <p v-text="packs.Accomodation" class="mb-0"></p>
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+          <!-- Inclusion -->
+          <v-tab-item>
+            <v-card flat>
+              <v-row>
+                <v-col cols="6" class="pt-0">
+                  <v-card-title>Included</v-card-title>
+                  <v-card-text>
+                    <p v-text="packs.Includes" class="mb-0"></p>
+                  </v-card-text>
+                </v-col>
+                <v-col cols="6" class="pt-0">
+                  <v-card-title>Excluded</v-card-title>
+                  <v-card-text>
+                    <p v-text="packs.Excludes" class="mb-0"></p>
+                  </v-card-text>
+                </v-col>
+              </v-row>
+            </v-card>
+            <!-- <v-simple-table class="mb-4">
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">Whats Included</th>
+                  <v-spacer></v-spacer>
+                  <th class="text-left">Whats Not Included</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ packs.Includes }}</td>
+                  <v-icon>mdi-check </v-icon>
+                  <td>{{ packs.Excludes }}</td>
+                  <v-icon>mdi-close </v-icon>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table> -->
+            <v-card flat>
+              <v-card-title>Gear Lists</v-card-title>
+              <v-card-text>
+                <p v-text="packs.Gears_required" class="mb-0"></p>
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+
+          <!-- Review -->
+          <v-tab-item>
+            <v-card flat>
+              <v-card-text>
+                <span>Reviews</span>
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+          <!-- </v-tabs> -->
+        </v-tabs>
+      </v-col>
+      <v-col cols="12" md="3">
+        <div class="pa-8" style="background: #0072bb; color:#fff">
+          <div class="ribbon">
+            <h3 v-if="packs.activity">
+              <router-link
+                :to="`/activities/${packs.activity.Slug}`"
+                class="no-underline"
+                >{{ packs.activity.Activity_Name }}</router-link
+              >
+            </h3>
+          </div>
+          <p>All Inclusive Price:</p>
+          <span class="price"
+            ><sup>$</sup>{{ formatPrice(packs.Price) }} <small>USD</small></span
+          >
+
+          <v-btn block color="warning" class="mt-4" tile @click.stop="dialog = true">
+            Enquire Now
+            <v-icon size="20" right>mdi-arrow-right</v-icon>
+          </v-btn>
+          <!-- <enquire></enquire> -->
+          <v-btn block color="success" class="mt-4" tile>
+            Book this trip
+            <v-icon size="20" right>mdi-arrow-right</v-icon>
+          </v-btn>
+        </div>
+      </v-col>
+    </v-row>
+  </div>
+</template>
+<script>
+  // import { Enquire } from "../../components/Packages/inquiry";
+export default {
+  // components: Enquire,
+  data: () => ({
+    packs: {},
+    items: [
+      {
+        text: "Home",
+        disabled: false,
+        to: "/"
+      },
+      {
+        text: "Packages",
+        disabled: false,
+        href: "/packages"
+      }
+    ]
+  }),
+  created() {
+    this.getPackage();
+  },
+  methods: {
+    getPackage() {
+      this.$axios
+        .$get("package/single/" + this.$route.params.slug)
+        .then(response => {
+          this.packs = response;
+          this.items.push({
+            text: response.activity.Activity_Name,
+            to: response.activity.Slug,
+            disabled: false
+          });
+          this.items.push({
+            text: response.Package_Name,
+            disabled: true
+          });
+        });
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(0);
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  }
+};
+</script>
+
+<style>
+.fact-item {
+  border: 2px solid #0072bb;
+  display: flex;
+  font-size: 14px;
+  overflow: hidden;
+}
+.icon-own {
+  background-color: #0072bb;
+  transform: skew(-25deg);
+  padding-left: 50px;
+  margin-left: -25px;
+  display: flex;
+  padding-right: 20px;
+}
+.icon-own::before {
+  transform: skew(25deg);
+}
+.ribbon {
+  position: relative;
+  box-sizing: content-box;
+  width: 220px;
+  height: 0;
+  border: 19px solid #fff;
+  border-right: 25px solid #0072bb;
+  margin-left: -34px;
+  font: normal 100% / normal Arial, Helvetica, sans-serif;
+  text-overflow: clip;
+  margin-bottom: 25px;
+}
+.ribbon h3 {
+  position: absolute;
+  font-family: playfair display, sans-serif;
+  font-weight: 700;
+  color: #0072bb;
+  font-size: 20px;
+  top: -10px;
+  left: 10px;
+}
+.price {
+  font-size: 40px;
+  font-weight: 900;
+}
+.price sup {
+  font-size: 20px;
+  top: -10px;
+}
+.price small {
+  font-size: 20px;
+  font-weight: 700;
+}
+</style>

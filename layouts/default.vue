@@ -188,6 +188,9 @@ ul {
 .v-breadcrumbs__item {
   color: black !important;
 }
+.no-underline {
+  text-decoration: none;
+}
 </style>
 
 <script>
