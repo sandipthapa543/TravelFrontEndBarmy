@@ -51,7 +51,7 @@
               </v-btn>
             </td>
             <td>
-              <v-btn @click="packDetail=props.item, addPackages=true" icon>
+              <v-btn @click="packDetail= props.item, addPackages=true" icon>
                 <v-icon color ="grey" v-text ="'mdi-pencil'"></v-icon>
               </v-btn>
             </td>
@@ -129,7 +129,7 @@
     methods:{
       getPackages(){
         this.$axios.$get('/package/show').then((response)=>{
-          this.getPack = response
+          this.getPack = response.results
         })
       },
       deletePackages(){
