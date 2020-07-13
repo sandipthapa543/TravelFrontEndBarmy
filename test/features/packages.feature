@@ -1,9 +1,9 @@
 @search
-Feature: view packages
+Feature: view single packages
 
 
     Scenario: The user logs in and sees the Home page
-        Given I am in home page
-        Then I should see index page open
-        Then I should see "Upper Dolpo" under Top Packages view
+        Given I am in packages page
+        Then I click on package name
+        Then I should see "UPPER DOLPO"
 

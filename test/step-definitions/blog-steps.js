@@ -19,7 +19,7 @@ module.exports = (async function () {
     });
 
     this.Then(/^I should see blog with name "([^"]*)"$/, function (expectedText) {
-        return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div[1]/div/div[2]/div/div[1]')).getText()
+        return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div/div/div[1]/div/div[1]')).getText()
             .then(textcheck => {
                 assert.equal(expectedText, textcheck);
             });
