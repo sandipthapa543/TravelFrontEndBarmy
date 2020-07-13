@@ -11,7 +11,7 @@
       </v-card-title>
       <v-divider></v-divider>
       <v-data-table
-        :items="getPack"
+        :items="Pack"
         :headers="headers"
       >
         <template
@@ -98,7 +98,7 @@
       return {
         packDetail:{},
         addPackages:false,
-        getPack:[],
+        Pack:[],
         deleteId:'',
         deleteForm: false,
         headers: [
@@ -128,8 +128,8 @@
     },
     methods:{
       getPackages(){
-        this.$axios.$get('/package/show').then((response)=>{
-          this.getPack = response.results
+        this.$axios.$get(`package/show/?sort=id&order=ASC`).then((response)=>{
+          this.Pack = response
         })
       },
       deletePackages(){
