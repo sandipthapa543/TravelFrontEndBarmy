@@ -1,13 +1,15 @@
 <template>
   <v-card class="mx-auto" max-width="350px">
     <v-img
+      v-if="packitem.Image"
       height="220"
       :alt="packitem.Package_Name"
       :src="`http://localhost:8080/uploads/packages/`+packitem.Image"
     ></v-img>
 
-    <h4 :to="`packages/`+packitem.Slug" class="px-4 pt-2" style="min-height: 64px">
-    {{ packitem.Package_Name }}</h4>
+    <h4 class="px-4 pt-2" style="min-height: 64px">
+    <router-link :to="`/packages/${packitem.Slug}`" class="no-underline">{{ packitem.Package_Name }}</router-link>
+    </h4>
     <!-- <v-divider></v-divider> -->
     <v-card-subtitle class="py-1 d-flex">
       <span v-if="packitem.activity">{{ packitem.activity.Activity_Name }}</span>
@@ -33,7 +35,7 @@
     <v-card-title class="py-2">
       <div>
         <span class="d-block">
-          <small>Price: </small>$ {{ packitem.Price }}
+          <small>Price: </small>$ {{ formatPrice(packitem.Price) }}
         </span>
         <span class="d-block"
           ><small>Duration: </small>{{ packitem.Days }} days</span
@@ -68,6 +70,12 @@ export default {
   props: {
     packitem: {},
     activity: ""
+  },
+  methods: {
+    formatPrice(value) {
+        let val = (value/1).toFixed(0)
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
   }
 };
 </script>

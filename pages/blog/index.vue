@@ -9,7 +9,7 @@
             <v-img
               class="white--text align-end"
               height="200px"
-              :src="'http://localhost:8080/uploads/blogs/' + `${item.Image}`"
+              :src="`http://localhost:8080/uploads/blogs/${item.Image}`"
             >
             </v-img>
             <v-card-subtitle class="pb-0 d-flex">
@@ -24,7 +24,7 @@
               <p class="text-justify mb-0" style="min-height: 88px" v-if="item.Contents">{{ item.Contents.length > 200 ? item.Contents.substring(0,200)+"..." : item.Contents }}</p>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="primary" :to="`/blog/`+item.Slug" >View more</v-btn>
+              <v-btn color="primary" :to="`/blog/${item.Slug}`" class="mx-auto">View more</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
