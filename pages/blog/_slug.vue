@@ -75,8 +75,12 @@
             </v-btn>
           </v-card-actions>
         </v-card>
+
       </v-col>
     </v-row>
+<!--    <v-dialog v-model="addBlog"  width="960" persistent  v-if="this.$auth.loggedIn">-->
+<!--      <add-blog v-if="addBlog"  :action-data="blogs"  @close="addBlog =false, getSingleBlog()"></add-blog>-->
+<!--    </v-dialog>-->
   </section>
 </template>
 <script></script>
@@ -89,6 +93,7 @@
 
 <script>
 import Package from "../../components/homepage/PackageList";
+// import AddBlog from "../../components/Blog/AddBlog";
 export default {
   components: { Package },
   data: () => ({
@@ -96,6 +101,7 @@ export default {
     dialog: false,
     blogs: {},
     allBlogs: [],
+    addBlog:false,
     message: "",
     items: [
       {
@@ -113,11 +119,17 @@ export default {
   created() {
     this.getSingleBlog();
     this.getBlogs();
+    this.getOneBlog();
   },
   methods: {
     getSingleBlog() {
       this.$axios.$get(`blog/${this.$route.params.slug}`).then(response => {
         this.blogs = response;
+      });
+    },
+    getOneBlog() {
+      this.$axios.$get(`blog/${this.$route.params.id}`).then(response => {
+        this.blogOne = response;
       });
     },
     getBlogs() {

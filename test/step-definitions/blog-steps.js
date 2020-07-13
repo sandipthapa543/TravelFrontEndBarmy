@@ -15,11 +15,11 @@ module.exports = (async function () {
 
 
     this.Then(/^I click on blog button$/, function () {
-        return helpers.loadPage("localhost:3000/blog");
+        return helpers.loadPage("http://localhost:3000/blog");
     });
 
     this.Then(/^I should see blog with name "([^"]*)"$/, function (expectedText) {
-        return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div/div/div[1]/div/div[1]')).getText()
+        return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div[1]/div/div[1]/div/div[1]')).getText()
             .then(textcheck => {
                 assert.equal(expectedText, textcheck);
             });
