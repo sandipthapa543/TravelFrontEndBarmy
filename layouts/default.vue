@@ -26,7 +26,7 @@
           }}</v-list-item-title>
         </v-list-item>
 
-        <v-list-item v-if="$auth.loggedIn">
+        <v-list-item v-if="$auth.loggedIn" @click="logout">
           <v-list-item-icon><v-icon>mdi-lock</v-icon></v-list-item-icon>
           <v-list-item-title>Logout</v-list-item-title>
         </v-list-item>

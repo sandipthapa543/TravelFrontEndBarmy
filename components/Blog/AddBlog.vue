@@ -59,8 +59,8 @@
 </template>
 <script>
   export default {
-    props: {
-      actionData: Object
+    props:{
+      actionData:Object,
     },
     data () {
       return {
@@ -78,7 +78,8 @@
           "contents": "",
           "image": null,
           "likes":null,
-          user:this.$auth.user.id
+          user:this.$auth.user.id,
+          blog:this.$route.params.id
         },
         blogPost:{}
       }
@@ -99,6 +100,11 @@
             formData.append('contents', this.formValues.contents)
             formData.append('image', this.formValues.image)
           }
+        if(this.formValues.id){
+          this.updateBlog();
+
+        }
+        else
           {
             this.$axios.$post('blog/add/', formData)
               .then(async (response) => {
@@ -106,11 +112,26 @@
                 this.$emit('close')
               })
               .catch(() => {
-                this.setNotifyMessage('Something went wrong.', 'red')
+                this.setNotifyMessage({message:'Something went wrong.', color:'red'})
               })
           }
         }
       },
+      updateBlog(){
+
+        let dataPost={
+          Title:this.formValues.title,
+          Contents:this.formValues.contents
+        }
+        this.$axios.$put(`blog/edit/${this.formValues.id}/`,dataPost)
+        .then(async (response)=>{
+          this.setNotifyMessage({message:'Successfully updated Blog',color:'green'})
+          this.$emit('close')
+        })
+        .catch(()=>{
+          this.setNotifyMessage('Something went wrong','red')
+        })
+      }
 
     }
   }
