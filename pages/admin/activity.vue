@@ -33,8 +33,13 @@
             <td>{{ props.item.Activity_Name }}</td>
             <td>{{ props.item.Contents }}</td>
             <td>
-              <v-btn @click="deleteId = props.item._id, deleteForm = true" icon>
+              <v-btn @click="deleteId = props.item.id, deleteForm = true" icon>
                 <v-icon color="red" v-text="'mdi-close-circle'"></v-icon>
+              </v-btn>
+            </td>
+            <td>
+              <v-btn @click="activity=props.item, addActivity=true" icon>
+              <v-icon color ="grey" v-text ="'mdi-pencil'"></v-icon>
               </v-btn>
             </td>
           </tr>
@@ -42,8 +47,9 @@
       </v-data-table>
     </v-card>
     <v-dialog v-model="addActivity" width="960" persistent>
-      <add-activity v-if="addActivity" @close="addActivity = false, getActivity()"></add-activity>
+      <add-activity v-if="addActivity" :action-data="activity"  @close="addActivity = false, getActivity(), activity={}"></add-activity>
     </v-dialog>
+
     <v-dialog
       v-model="deleteForm"
       width="500"
@@ -61,7 +67,7 @@
             <v-btn class="text-capitalize" text color="grey" @click="deleteForm = false">
               Cancel
             </v-btn>
-            <v-btn class="white--text text-capitalize" color="red" @click="deleteProduct">
+            <v-btn class="white--text text-capitalize" color="red"  @click="deleteActivity">
               Confirm
             </v-btn>
           </v-col>
@@ -74,36 +80,53 @@
   import AddActivity from "../../components/Activity/AddActivity";
   export  default {
     components: {AddActivity},
-    layout:'admin',
-
+    layout: 'admin',
     data() {
       return {
         choices: [],
-        addActivity:false,
-        deleteId:'',
-        deleteForm:false,
+        addActivity: false,
+        deleteId: '',
+        deleteForm: false,
+        activity:{},
         activityList:[],
+
+
         headers: [
-          { text: 'Image', value: 'name', sortable: false },
-          { text: 'Name', value: 'name', sortable: false },
-          { text: 'Description', value: 'name', sortable: false },
-          { text: 'Actions', value: 'name', sortable: false },
+          {text: 'Image', value: 'name', sortable: false},
+          {text: 'Name', value: 'name', sortable: false},
+          {text: 'Description', value: 'name', sortable: false},
+          {text: 'Actions', value: 'name', sortable: false},
         ]
       }
     },
-    created()
-    {
+    created() {
       this.getActivity()
+
     },
 
     methods: {
-      getActivity () {
+      getActivity() {
         this.$axios.$get('package/activity')
-          .then((response)=> {
+          .then((response) => {
             this.activityList = response
           })
       },
+      deleteActivity() {
+        this.$axios.$delete(`admin/${this.deleteId}`)
+          .then(() => {
+            this.setNotifyMessage({message: "Successfully Deleted Product ", color: "green"})
+            this.getActivity()
 
-    }
+
+          })
+      },
+
+
   }
+  }
+
+
+
+
+
 </script>

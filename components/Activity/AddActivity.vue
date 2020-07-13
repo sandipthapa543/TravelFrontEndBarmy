@@ -66,10 +66,6 @@ export default {
       },
       nameRules: [v => !!v || "This field is required."],
       formValues: {
-        name: "",
-        description: "",
-        image: null,
-        slug: ""
       }
     };
   },
@@ -81,14 +77,17 @@ export default {
       let formData = new FormData();
       if (!(this.formValues.image instanceof File)) {
         delete this.formValues.image;
-        formData = { ...this.formValues };
+        formData = {...this.formValues};
       } else {
         formData.append("name", this.formValues.name);
         formData.append("description", this.formValues.description);
         formData.append("image", this.formValues.image);
         formData.append("slug", this.formValues.slug);
       }
-      {
+
+      if (this.formValues.id) {
+        this.updateActivity();
+      } else {
         this.$axios
           .$post("admin/activity/", formData)
           .then(async response => {
@@ -102,6 +101,25 @@ export default {
             this.setNotifyMessage("Something went wrong.", "red");
           });
       }
+    },
+    updateActivity() {
+      const dataPost = {
+        Activity_Name: this.formValues.name,
+        Contents:this.formValues.description
+      }
+      this.$axios.$put(`admin/${this.formValues.id}/`, dataPost)
+        .then(async response => {
+          this.setNotifyMessage({
+            message: 'successfully updated',
+            color: "green"
+          })
+        })
+        .catch(() => {
+          this.setNotifyMessage({
+            message: "something went wrong",
+            color: "red"
+          })
+        })
     }
   }
 };
