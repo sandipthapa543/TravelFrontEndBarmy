@@ -6,7 +6,7 @@
     <v-container>
       <h2 class="text-center">Latest Blog</h2>
       <v-row>
-        <v-col v-for="(item, index) in blogLists" :key="index" cols="12" md="4">
+        <v-col v-for="(item, index) in blogLists" :key="index" cols="12" md="4" >
           <v-card outlined class="mx-auto">
             <v-card-title v-if="item.Title">{{ item.Title.length> 30 ? item.Title.substring(0,30) + "..": item.Title }}</v-card-title>
             <v-img
@@ -28,17 +28,17 @@
             </v-card-text>
             <v-card-actions>
               <v-btn color="primary" :to="`/blog/${item.Slug}`" class="mx-auto">View more</v-btn>
+
               <v-spacer></v-spacer>
-              <v-btn color="primary" v-if="$auth.user.id === item.user.id"  @click="blogs=item , addBlog=true" fab small dark>
+              <v-btn color="primary"  v-if=" $auth.loggedIn && $auth.user.id === item.user.id "  @click="blogs=item , addBlog=true" fab small dark>
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
-
             </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
-    <v-dialog v-model="addBlog"  width="960" persistent  v-if="this.$auth.loggedIn">
+    <v-dialog v-model="addBlog"  width="960" persistent v-if="this.$auth.loggedIn">
       <add-blog v-if="addBlog"  :action-data="blogs"  @close="addBlog = false, getSingleBlog() ,blogs={}"></add-blog>
     </v-dialog>
   </div>
