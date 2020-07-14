@@ -12,14 +12,14 @@
         <v-row>
           <v-col cols="6">
             <v-text-field
-              v-model="formValues.name"
+              v-model="formValues.Activity_Name"
               label="Activity Name"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
           <v-col cols="6">
             <v-file-input
-              v-model="formValues.image"
+              v-model="formValues.Image"
               label="Activity Image"
               :rules="nameRules"
               prepend-inner-icon="mdi-file"
@@ -27,7 +27,7 @@
           </v-col>
           <v-col sm="12" md="6" cols="6">
             <v-textarea
-              v-model="formValues.description"
+              v-model="formValues.Contents"
               label="Description"
               prepend-inner-icon="mdi-file"
             ></v-textarea>
@@ -75,13 +75,13 @@ export default {
   methods: {
     createActivity() {
       let formData = new FormData();
-      if (!(this.formValues.image instanceof File)) {
-        delete this.formValues.image;
+      if (!(this.formValues.Image instanceof File)) {
+        delete this.formValues.Image;
         formData = {...this.formValues};
       } else {
-        formData.append("name", this.formValues.name);
-        formData.append("description", this.formValues.description);
-        formData.append("image", this.formValues.image);
+        formData.append("Activity_Name", this.formValues.Activity_Name);
+        formData.append("Contents", this.formValues.Contents);
+        formData.append("Image", this.formValues.Image);
         formData.append("slug", this.formValues.slug);
       }
 
@@ -104,8 +104,8 @@ export default {
     },
     updateActivity() {
       const dataPost = {
-        Activity_Name: this.formValues.name,
-        Contents:this.formValues.description
+        Activity_Name: this.formValues.Activity_Name,
+        Contents:this.formValues.Contents
       }
       this.$axios.$put(`admin/${this.formValues.id}/`, dataPost)
         .then(async response => {

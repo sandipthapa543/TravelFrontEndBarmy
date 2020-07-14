@@ -44,7 +44,7 @@
             <td>{{ props.item.Highest_point}}</td>
             <td>{{ props.item.Starting_point}}</td>
             <td>{{ props.item.Gears_required}}</td>
-            <td>{{ props.item.activity.Activity_Name}}</td>
+            <td>{{ props.item.activity ? props.item.activity.Activity_Name:'N/a'}}</td>
             <td>
               <v-btn @click="deleteId = props.item.id, deleteForm = true" icon>
                 <v-icon color="red" v-text="'mdi-close-circle'"></v-icon>
