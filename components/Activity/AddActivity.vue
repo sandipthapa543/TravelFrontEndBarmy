@@ -19,7 +19,7 @@
           </v-col>
           <v-col cols="6">
             <v-file-input
-              v-model="formValues.Image"
+              v-model="formValues.image"
               label="Activity Image"
               :rules="nameRules"
               prepend-inner-icon="mdi-file"
@@ -75,13 +75,13 @@ export default {
   methods: {
     createActivity() {
       let formData = new FormData();
-      if (!(this.formValues.Image instanceof File)) {
-        delete this.formValues.Image;
+      if (!(this.formValues.image instanceof File)) {
+        delete this.formValues.image;
         formData = {...this.formValues};
       } else {
         formData.append("Activity_Name", this.formValues.Activity_Name);
         formData.append("Contents", this.formValues.Contents);
-        formData.append("Image", this.formValues.Image);
+        formData.append("image", this.formValues.image);
         formData.append("slug", this.formValues.slug);
       }
 
