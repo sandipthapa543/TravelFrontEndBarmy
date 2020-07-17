@@ -39,7 +39,7 @@
       </v-row>
     </v-container>
     <v-dialog v-model="addBlog"  width="960" persistent v-if="this.$auth.loggedIn">
-      <add-blog v-if="addBlog"  :action-data="blogs"  @close="addBlog = false, getBlog() ,blogs={}"></add-blog>
+      <add-blog v-if="addBlog"  :action-data="blogs"  @close="addBlog = false, getSingleBlog() ,blogs={}"></add-blog>
     </v-dialog>
   </div>
 </template>

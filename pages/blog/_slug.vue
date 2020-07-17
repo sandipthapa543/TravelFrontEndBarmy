@@ -34,12 +34,12 @@
               <v-card>
                 <v-card-title class="headline">Feel free</v-card-title>
 
-                <v-form>
+                <v-form ref="form">
                   <v-container>
                     <v-row>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="message"
+                          v-model="formValues.Comments"
                           filled
                           clear-icon="mdi-close-circle"
                           clearable
@@ -59,7 +59,7 @@
                     Cancel
                   </v-btn>
 
-                  <v-btn color="green darken-1" text @click="dialog = false">
+                  <v-btn color="green darken-1" text @click.native="postComments">
                     Submit
                   </v-btn>
                 </v-card-actions>
@@ -103,6 +103,10 @@ export default {
     allBlogs: [],
     addBlog:false,
     message: "",
+    formValues:{
+      Comments:"",
+      blog_id:""
+    },
     items: [
       {
         text: "Home",
@@ -114,7 +118,8 @@ export default {
         disabled: false,
         to: "/blog"
       }
-    ]
+    ],
+    blogOne:{},
   }),
   created() {
     this.getSingleBlog();
@@ -129,7 +134,7 @@ export default {
     },
     getOneBlog() {
       this.$axios.$get(`blog/${this.$route.params.id}`).then(response => {
-        this.blogOne = response;
+        this.blogOne = response.result;
       });
     },
     getBlogs() {
@@ -137,12 +142,29 @@ export default {
         this.allBlogs = response;
       });
     },
+    postComments(){
+      if(this.$auth.loggedIn){
+        this.dialog = false
+        let formData={
+          Comments:this.formValues.Comments,
+          blog_id:this.blogs.id,
+
+        };
+        this.$axios.$post(`blog/comment`,formData).then(()=>{
+          this.setNotifyMessage({color:'green',message:'Posted Comment'})
+        }).catch(()=>{
+          this.setNotifyMessage({color:'red',message:'failed'})
+        })
+
+      }
+    },
+
     sendMessage() {
       this.resetIcon();
       this.clearMessage();
     },
     clearMessage() {
-      this.message = "";
+      this.formValues.message = "";
     }
   }
 };
