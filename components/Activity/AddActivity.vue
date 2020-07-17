@@ -86,7 +86,19 @@ export default {
       }
 
       if (this.formValues.id) {
-        this.updateActivity();
+        this.$axios.$put(`admin/${this.formValues.id}/`,formData )
+          .then(async response => {
+            this.setNotifyMessage({
+              message: 'successfully updated',
+              color: "green"
+            })
+          })
+          .catch(() => {
+            this.setNotifyMessage({
+              message: "something went wrong",
+              color: "red"
+            })
+          })
       } else {
         this.$axios
           .$post("admin/activity/", formData)
@@ -102,25 +114,25 @@ export default {
           });
       }
     },
-    updateActivity() {
-      const dataPost = {
-        Activity_Name: this.formValues.Activity_Name,
-        Contents:this.formValues.Contents
-      }
-      this.$axios.$put(`admin/${this.formValues.id}/`, dataPost)
-        .then(async response => {
-          this.setNotifyMessage({
-            message: 'successfully updated',
-            color: "green"
-          })
-        })
-        .catch(() => {
-          this.setNotifyMessage({
-            message: "something went wrong",
-            color: "red"
-          })
-        })
-    }
+    // updateActivity() {
+    //   const dataPost = {
+    //     Activity_Name: this.formValues.Activity_Name,
+    //     Contents:this.formValues.Contents
+    //   }
+    //   this.$axios.$put(`admin/${this.formValues.id}/`, dataPost)
+    //     .then(async response => {
+    //       this.setNotifyMessage({
+    //         message: 'successfully updated',
+    //         color: "green"
+    //       })
+    //     })
+    //     .catch(() => {
+    //       this.setNotifyMessage({
+    //         message: "something went wrong",
+    //         color: "red"
+    //       })
+    //     })
+    // }
   }
 };
 </script>

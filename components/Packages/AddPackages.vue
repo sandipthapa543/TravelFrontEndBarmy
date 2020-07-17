@@ -267,7 +267,7 @@
             this.$emit('close')
           })
           .catch(() => {
-            this.setNotifyMessage('Something went wrong', red)
+            this.setNotifyMessage({message:'Something went wrong', color:'red'})
           })
       }
     }

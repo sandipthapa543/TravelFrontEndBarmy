@@ -12,7 +12,7 @@
         <v-row>
           <v-col cols="6">
             <v-text-field
-              v-model="formValues.title"
+              v-model="formValues.Title"
               id="title"
               label="Blog Title"
               name="title"
@@ -31,7 +31,7 @@
           </v-col>
           <v-col cols="6">
             <v-textarea
-              v-model="formValues.contents"
+              v-model="formValues.Contents"
               id="content"
               label="Content"
                name="content"
@@ -74,8 +74,8 @@
           v => !!v ||  'This field is required.'
         ],
         formValues: {
-          "name": "",
-          "contents": "",
+          "Name": "",
+          "Contents": "",
           "image": null,
           "likes":null,
           user:this.$auth.user.id,
@@ -96,8 +96,8 @@
             delete this.formValues.image
             formData = {...this.formValues}
           } else {
-            formData.append('title', this.formValues.title)
-            formData.append('contents', this.formValues.contents)
+            formData.append('Title', this.formValues.Title)
+            formData.append('Contents', this.formValues.Contents)
             formData.append('image', this.formValues.image)
           }
         if(this.formValues.id){
@@ -120,8 +120,8 @@
       updateBlog(){
 
         let dataPost={
-          Title:this.formValues.title,
-          Contents:this.formValues.contents
+          Title:this.formValues.Title,
+          Contents:this.formValues.Contents
         }
         this.$axios.$put(`blog/edit/${this.formValues.id}/`,dataPost)
         .then(async (response)=>{
