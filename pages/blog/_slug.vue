@@ -38,6 +38,14 @@
                   <v-container>
                     <v-row>
                       <v-col cols="12">
+
+                    <v-list-item>
+                      <v-list-item-avatar color="grey"></v-list-item-avatar>
+                      <v-list-item-content>
+                        <v-list-item-title class="headline">User name</v-list-item-title>
+                        <!-- <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle> -->
+                      </v-list-item-content>
+                    </v-list-item>
                         <v-text-field
                           v-model="message"
                           filled
@@ -54,7 +62,6 @@
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
-
                   <v-btn color="green darken-1" text @click="dialog = false">
                     Cancel
                   </v-btn>
@@ -63,6 +70,8 @@
                     Submit
                   </v-btn>
                 </v-card-actions>
+<v-spacer></v-spacer>
+<comment></comment>
               </v-card>
             </v-dialog>
 
@@ -94,8 +103,9 @@
 <script>
 import Package from "../../components/homepage/PackageList";
 // import AddBlog from "../../components/Blog/AddBlog";
+import Comment from "../../components/Blog/Comment";
 export default {
-  components: { Package },
+  components: { Package, Comment },
   data: () => ({
     show: false,
     dialog: false,
