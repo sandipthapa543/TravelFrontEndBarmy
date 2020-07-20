@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-container>
     <v-carousel
       hide-delimiter-background
       show-arrows-on-hover
@@ -13,7 +12,6 @@
       >
       </v-carousel-item>
     </v-carousel>
-    </v-container>
     <v-container>
       <h2 class="text-center font-weight-bold">Top Packages</h2>
       <package :packitems="packitems"></package>
@@ -55,9 +53,9 @@ export default {
     sliderItems: [],
     items: [{
       id: "1",
-      content: '<iframe width="1200" height="550" src="https://www.youtube.com/embed/ut-U-4m42aQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen allow="autoplay; encrypted-media" ></iframe>'},
+      content: '<iframe width="100%" height="550" src="https://www.youtube.com/embed/ut-U-4m42aQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen allow="autoplay; encrypted-media" ></iframe>'},
       { id: "2",
-        content: '<iframe width="1200" height="550" src="https://www.youtube.com/embed/j61j9X4xCnA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen allow="autoplay; encrypted-media"></iframe>'}
+        content: '<iframe width="100%" height="550" src="https://www.youtube.com/embed/j61j9X4xCnA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen allow="autoplay; encrypted-media"></iframe>'}
     ]
   }),
   created() {
