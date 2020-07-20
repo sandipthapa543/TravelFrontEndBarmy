@@ -2,34 +2,35 @@
 const { Driver } = require("selenium-webdriver/chrome");
 const { assert } = require("chai");
 const { By } = require("selenium-webdriver");
-module.exports = (async function () {
+module.exports = (function () {
 
-    this.Given(/^I am a register user$/, function () {
+    this.Given(/^I am a register user$/, async function () {
         helpers.loadPage(page.login.url);
-        driver.findElement(by.name("email")).sendKeys("gaurav@asd.com", selenium.Key.ENTER);
-        driver.findElement(by.name("password")).sendKeys("gaurav123", selenium.Key.ENTER);
-        return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div/div[3]/button')).click();
+        return page.login.userInput("gaurav@asd.com", "gaurav123");
     });
 
 
 
-    this.Then(/^I click on blog$/, function () {
-        return helpers.loadPage(page.comment.home_url);
-    });
-    
-    this.Then(/^I select particular blog to comment$/, function () {
-        return helpers.loadPage(page.comment.blog_url);
-    });
-    this.When(/^I write comment on blog$/, function () {
-        driver.findElement(by.xpath('//*[@id="app"]/div[1]/main/div/section/div/div/div/div[5]/button[1]')).click();
-        return driver.findElement(by.xpath('//*[@id="input-67"]')).sendKeys("my first comment", selenium.Key.ENTER);
-
-    });
-
-    this.Then(/^Comment should be posted$/, function (expectedText) {
-        return driver.findElement(by.xpath('//*[@id="app"]/div[3]/div/div/div[2]/button[2]')).click()
-            
+    this.Then(/^I click on blog and write comment$/, async function () {
+        await new Promise(r => setTimeout(r, 2000));
+        helpers.loadPage("http://localhost:3000/blog");
+        await new Promise(r => setTimeout(r, 2000));
+        driver.findElement(by.xpath('//*[@id="app"]/div/main/div/div[1]/div[1]/div/div/div/div[5]/a')).click();
+        await new Promise(r => setTimeout(r, 3000));
+        return driver.findElement(by.xpath('//*[@id="people"]')).sendKeys("hello");
 
 
     });
-});
+    this.When(/^I post the comment$/, async function () {
+        await new Promise(r => setTimeout(r, 2000));
+        return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/section/div/div/div/div[6]/form/div/div[2]/button')).click();
+    });
+    this.Then(/^I should see my comment "([^"]*)"$/, function (expectedText) {
+        helpers.loadPage("http://localhost:3000/blog/hidden-kingdom-of-nepal");
+        return driver.findElement(by.xpath('//*[@id="app"]/div/main/div/section/div/div/div/div[6]/div[1]/div/p')).getText()
+            .then(textcheck => {
+                assert.equal(expectedText, textcheck);
+            });
+        });
+
+    });
