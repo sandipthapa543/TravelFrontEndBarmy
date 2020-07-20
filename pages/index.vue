@@ -29,6 +29,10 @@
       <h2 class="text-center font-weight-bold">Our Activities</h2>
       <activity :activities="activities"></activity>
     </v-container>
+      <v-container>
+      <h2 class="text-center font-weight-bold">Rate us</h2>
+      <rating></rating>
+    </v-container>
   </div>
 </template>
 
@@ -36,6 +40,7 @@
 import Activity from "../components/homepage/ActivityLists";
 import Package from "../components/homepage/PackageList";
 import Slider from "../components/homepage/PackageSlider";
+import Rating from "../components/Rating"
 export default {
   head: {
     title: "Travel and Tourism App",
@@ -46,7 +51,7 @@ export default {
       { innerHTML: 'Body No Scripts', body: true }
     ],
   },
-  components: { Activity, Package, Slider },
+  components: { Activity, Package, Slider, Rating },
   data: () => ({
     packitems: [],
     activities: [],

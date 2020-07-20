@@ -15,7 +15,8 @@
             <span>{{ blogs.createdAt.substring(0, 10) }}</span>
           </v-card-subtitle>
 
-          <v-img v-if="blogs.Image"
+          <v-img
+            v-if="blogs.Image"
             :src="`http://localhost:8080/uploads/blogs/${blogs.Image}`"
             height="300"
           ></v-img>
@@ -27,44 +28,30 @@
 
           <v-card-actions>
             <v-btn text color="red lighten-2" @click.stop="dialog = true">
-              Comment
+              {{comment.length}} {{comment.length === 1 ? "Comment" : "Comments"}}
             </v-btn>
 
-            <v-dialog v-model="dialog" max-width="500">
+            <!-- <v-dialog v-model="dialog" max-width="500">
               <v-card>
                 <v-card-title class="headline">Feel free</v-card-title>
 
-                <v-form ref="form">
-                  <v-container>
-                    <v-row>
-                      <v-col cols="12">
-                        <v-text-field
-                          v-model="formValues.Comments"
-                          filled
-                          clear-icon="mdi-close-circle"
-                          clearable
-                          type="text"
-                          @click:append-outer="sendMessage"
-                          @click:clear="clearMessage"
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-form>
-
                 <v-card-actions>
                   <v-spacer></v-spacer>
-
                   <v-btn color="green darken-1" text @click="dialog = false">
                     Cancel
                   </v-btn>
 
-                  <v-btn color="green darken-1" text @click.native="postComments">
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click.native="postComments"
+                  >
                     Submit
                   </v-btn>
                 </v-card-actions>
+                <v-spacer></v-spacer>
               </v-card>
-            </v-dialog>
+            </v-dialog> -->
 
             <v-spacer></v-spacer>
             <v-btn icon>
@@ -74,13 +61,13 @@
               <v-icon>mdi-share-variant</v-icon>
             </v-btn>
           </v-card-actions>
+          <!-- </v-card>
+  <v-card> -->
+    <v-divider></v-divider>
+          <comment :comments="comment" :blogId="blogs.id"></comment>
         </v-card>
-
       </v-col>
     </v-row>
-<!--    <v-dialog v-model="addBlog"  width="960" persistent  v-if="this.$auth.loggedIn">-->
-<!--      <add-blog v-if="addBlog"  :action-data="blogs"  @close="addBlog =false, getSingleBlog()"></add-blog>-->
-<!--    </v-dialog>-->
   </section>
 </template>
 <script></script>
@@ -94,19 +81,19 @@
 <script>
 import Package from "../../components/homepage/PackageList";
 // import AddBlog from "../../components/Blog/AddBlog";
+import Comment from "../../components/Blog/Comment";
 export default {
-  components: { Package },
+  components: { Package, Comment },
   data: () => ({
     show: false,
     dialog: false,
     blogs: {},
+    blogId: null,
     allBlogs: [],
-    addBlog:false,
+    addBlog: false,
     message: "",
-    formValues:{
-      Comments:"",
-      blog_id:""
-    },
+    comment: [],
+
     items: [
       {
         text: "Home",
@@ -118,23 +105,28 @@ export default {
         disabled: false,
         to: "/blog"
       }
-    ],
-    blogOne:{},
+    ]
   }),
+
+async fetch() {
+      this.blogs = await this.$axios.$get(`blog/${this.$route.params.slug}`)
+      this.comment = await this.$axios.$get(`blog/comment/${this.blogs.id}`)
+},
+
   created() {
-    this.getSingleBlog();
-    this.getBlogs();
-    this.getOneBlog();
+    // this.getSingleBlog();
+
+    if (this.blogId !== null) {
+      this.getComments();
+    }
+
+    //   this.getBlogs();
   },
   methods: {
     getSingleBlog() {
       this.$axios.$get(`blog/${this.$route.params.slug}`).then(response => {
         this.blogs = response;
-      });
-    },
-    getOneBlog() {
-      this.$axios.$get(`blog/${this.$route.params.id}`).then(response => {
-        this.blogOne = response.result;
+        this.blogId = response.blog_id;
       });
     },
     getBlogs() {
@@ -142,34 +134,13 @@ export default {
         this.allBlogs = response;
       });
     },
-    postComments(){
-      if(this.$auth.loggedIn){
-        this.dialog = false
-        let formData={
-          Comments:this.formValues.Comments,
-          blog_id:this.blogs.id,
-
-        };
-        this.$axios.$post(`blog/comment`,formData).then(()=>{
-          this.setNotifyMessage({color:'green',message:'Posted Comment'})
-        }).catch(()=>{
-          this.setNotifyMessage({color:'red',message:'failed'})
-        })
-
-      }
+    getComments() {
+      this.$axios.$get(`blog/comment/${this.blogId}`).then(response => {
+        this.comment = response;
+      });
     },
-
-    sendMessage() {
-      this.resetIcon();
-      this.clearMessage();
-    },
-    clearMessage() {
-      this.formValues.message = "";
-    }
   }
 };
 </script>
 
 <style></style>
-
-
