@@ -15,6 +15,7 @@
               v-model="formValues.Package_Name"
               label="Package Name"
               prepend-inner-icon="mdi-file"
+              :rules="nameRules"
             ></v-text-field>
           </v-col>
           <v-col cols="6">
@@ -32,6 +33,7 @@
             <v-text-field
               v-model="formValues.Days"
               label="Days"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
@@ -39,6 +41,7 @@
             <v-text-field
               v-model="formValues.Price"
               label="Price"
+              :rules="nameRules"
               prepend-inner-icon="mdi-cash"
             ></v-text-field>
           </v-col>
@@ -47,6 +50,7 @@
               v-model="formValues.Includes"
               prepend-inner-icon="mdi-flag"
               label="includes"
+              :rules="nameRules"
             ></v-text-field>
           </v-col>
           <v-col cols="6">
@@ -54,6 +58,7 @@
               v-model="formValues.Excludes"
               prepend-inner-icon="mdi-cash"
               label="Excludes"
+              :rules="nameRules"
             ></v-text-field>
           </v-col>
           <v-col cols="6">
@@ -61,7 +66,7 @@
               v-model="formValues.Country"
               prepend-inner-icon="mdi-flag"
               label="Country"
-
+              :rules="nameRules"
             ></v-text-field>
           </v-col>
 
@@ -71,6 +76,7 @@
               label="Difficulty_level"
               prepend-inner-icon="mdi-file"
               :items="[1,2,3,4,5]"
+              :rules="nameRules"
             ></v-select>
           </v-col>
 
@@ -78,6 +84,7 @@
             <v-text-field
               v-model="formValues.Best_season"
               label="Best Season"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
@@ -85,6 +92,7 @@
             <v-text-field
               v-model="formValues.Accomodation"
               label="Accomodation"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
@@ -92,6 +100,7 @@
             <v-text-field
               v-model="formValues.Starting_point"
               label="Starting Point"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
@@ -99,6 +108,7 @@
             <v-text-field
               v-model="formValues.Highest_point"
               label="Highest Point"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
@@ -107,6 +117,7 @@
             <v-text-field
               v-model="formValues.Gears_required"
               label="Gears Required"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
@@ -114,6 +125,7 @@
             <v-textarea
               v-model="formValues.Itinerary"
               label="Itinerary"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-textarea>
           </v-col>
@@ -121,6 +133,7 @@
             <v-textarea
               v-model="formValues.Description"
               label="Description"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-textarea>
           </v-col>
@@ -231,7 +244,7 @@
 
             })
             .catch(() => {
-              this.setNotifyMessage('Something went wrong.', 'red')
+              this.setNotifyMessage({message:'Something went wrong.',color: 'red'})
             })
         }
 

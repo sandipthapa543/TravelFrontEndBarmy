@@ -14,6 +14,7 @@
             <v-text-field
               v-model="formValues.Activity_Name"
               label="Activity Name"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-text-field>
           </v-col>
@@ -29,6 +30,7 @@
             <v-textarea
               v-model="formValues.Contents"
               label="Description"
+              :rules="nameRules"
               prepend-inner-icon="mdi-file"
             ></v-textarea>
           </v-col>
@@ -110,7 +112,7 @@ export default {
             this.$emit("close");
           })
           .catch(() => {
-            this.setNotifyMessage("Something went wrong.", "red");
+            this.setNotifyMessage({message:"Something went wrong.",color: "red"});
           });
       }
     },
