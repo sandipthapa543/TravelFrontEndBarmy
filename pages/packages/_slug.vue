@@ -55,7 +55,9 @@
                 width="90px"
                 class="d-block mx-auto"
               />
-              <v-card-subtitle class="pa-0 ma-1 d-block text-center text--primary">
+              <v-card-subtitle
+                class="pa-0 ma-1 d-block text-center text--primary"
+              >
                 <span v-if="packs.Difficulty_level === 1">Easy</span>
                 <span v-else-if="packs.Difficulty_level === 2">Moderate</span>
                 <span v-else-if="packs.Difficulty_level === 3">Sternous</span>
@@ -268,11 +270,45 @@
                   travelled with Ace the Himalaya previously. They are not
                   edited by us; find the real story, from real travellers below.
                 </p>
-                <a class="pointer py-2 bg-success" @click.stop="reviewDialog = true"
+                <a
+                  class="pointer py-2 bg-success"
+                  @click.stop="reviewDialog = true"
                   >Share your story with us.</a
                 >
               </v-card-text>
-              <v-card-text> </v-card-text>
+              <v-list-item
+                v-for="(review, index) in reviews"
+                :key="index"
+                class="mt-2"
+                style="border: 1px solid aqua"
+              >
+                <div class="d-flex" style="width:100%">
+                  <v-list-item-avatar
+                    class="my-0"
+                    height="100"
+                    width="100"
+                  >
+                  <v-icon size="100">mdi-account-circle</v-icon>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title class="headline" v-if="review.user">
+                      {{ review.user.First_Name + " " + review.user.Last_Name }}
+                    </v-list-item-title>
+                    <v-rating
+                      :value="review.rating"
+                      :length="review.rating"
+                      color="#FFAB52"
+                      dense
+                      half-increments
+                      readonly
+                      size="20"
+                      :hover="true"
+                      :title="`Rating: ${review.rating}`"
+                    ></v-rating>
+                    <p v-text="review.review" class="text-justify ma-0"></p>
+                  </v-list-item-content>
+                </div>
+              </v-list-item>
             </v-card>
           </v-tab-item>
           <!-- </v-tabs> -->
