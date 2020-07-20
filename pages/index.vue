@@ -1,22 +1,17 @@
 <template>
-  <!-- <v-row>
-    <v-col>
-      <v-carousel
-        cycle
-        hide-delimiter-background
-        show-arrows-on-hover
-      >
-        <v-carousel-item
-          v-for=" (items,i) in items"
-          :key="i"
-          :src="items"
-          justify="center"
-        >
-        </v-carousel-item>
-      </v-carousel>
-    </v-col>
-  </v-row> -->
   <div>
+    <v-carousel
+      hide-delimiter-background
+      show-arrows-on-hover
+    >
+      <v-carousel-item
+        v-for=" item in items"
+        :key="item.id"
+        v-html="item.content"
+        justify="center"
+      >
+      </v-carousel-item>
+    </v-carousel>
     <v-container>
       <h2 class="text-center font-weight-bold">Top Packages</h2>
       <package :packitems="packitems"></package>
@@ -55,7 +50,13 @@ export default {
   data: () => ({
     packitems: [],
     activities: [],
-    sliderItems: []
+    sliderItems: [],
+    items: [{
+      id: "1",
+      content: '<iframe width="100%" height="550" src="https://www.youtube.com/embed/ut-U-4m42aQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen allow="autoplay; encrypted-media" ></iframe>'},
+      { id: "2",
+        content: '<iframe width="100%" height="550" src="https://www.youtube.com/embed/j61j9X4xCnA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen allow="autoplay; encrypted-media"></iframe>'}
+    ]
   }),
   created() {
     this.getPackages();
