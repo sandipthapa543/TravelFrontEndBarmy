@@ -19,9 +19,76 @@
       </v-breadcrumbs>
     </div>
 
-    <v-toolbar flat color="primary" dark>
-      <v-toolbar-title class="mx-auto">What we offer</v-toolbar-title>
-    </v-toolbar>
+    <v-card flat>
+      <v-container>
+        <v-row class="align-center">
+          <v-col cols="4">
+            <div class="d-flex justify-center align-center ratings">
+              <!-- <span class="display-1 mr-2" color="primary">80%</span> -->
+              <div class="d-flex flex-column">
+                <v-rating
+                  :value="aggregate.average"
+                  :length="Math.ceil(aggregate.average)"
+                  color="#5F9800"
+                  dense
+                  half-increments
+                  readonly
+                  size="25"
+                  :hover="true"
+                  :title="`Rating: ${aggregate.average}`"
+                  class="d-inline ml-2"
+                ></v-rating>
+                <span>based on {{ aggregate.total }} reviews</span>
+                <!-- <p>{{reviews}}</p> -->
+              </div>
+            </div>
+          </v-col>
+          <v-col cols="4">
+            <div>
+              <img
+                :src="
+                  `https://himalayantrekkers.com/images/tripgrade/` +
+                    packs.Difficulty_level +
+                    `.svg`
+                "
+                alt="tripgrade"
+                width="90px"
+                class="d-block mx-auto"
+              />
+              <v-card-subtitle class="pa-0 ma-1 d-block text-center text--primary">
+                <span v-if="packs.Difficulty_level === 1">Easy</span>
+                <span v-else-if="packs.Difficulty_level === 2">Moderate</span>
+                <span v-else-if="packs.Difficulty_level === 3">Sternous</span>
+                <span v-else-if="packs.Difficulty_level === 4">Difficult</span>
+                <span v-else>Challenging</span>
+              </v-card-subtitle>
+            </div>
+          </v-col>
+          <v-col cols="4">
+            <ul>
+              <li>
+                <v-icon left color="success">
+                  mdi-checkbox-marked-circle-outline
+                </v-icon>
+                Best price guaranteed
+              </li>
+              <li>
+                <v-icon left color="success">
+                  mdi-checkbox-marked-circle-outline
+                </v-icon>
+                No booking fees
+              </li>
+              <li>
+                <v-icon left color="success">
+                  mdi-checkbox-marked-circle-outline
+                </v-icon>
+                Free booking cancelation
+              </li>
+            </ul>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
     <v-row>
       <v-col cols="12" md="9">
         <v-tabs vertical>
@@ -177,9 +244,35 @@
           <!-- Review -->
           <v-tab-item>
             <v-card flat>
+              <v-card-title>Customer Reviews</v-card-title>
               <v-card-text>
-                <span>Reviews</span>
+                <div class="d-flex align-center">
+                  <v-rating
+                    :value="aggregate.average"
+                    :length="Math.ceil(aggregate.average)"
+                    color="#5F9800"
+                    dense
+                    half-increments
+                    readonly
+                    size="26"
+                    :hover="true"
+                    :title="`Rating:${aggregate.average}`"
+                    class="d-inline"
+                  ></v-rating>
+                  <span style="color:#000; font-weight: 700; font-size: 22px"
+                    >Based on {{ aggregate.total }} reviews</span
+                  >
+                </div>
+                <p class="text--primary mt-2">
+                  These full and frank reviews are from the travellers who have
+                  travelled with Ace the Himalaya previously. They are not
+                  edited by us; find the real story, from real travellers below.
+                </p>
+                <a class="pointer py-2 bg-success" @click.stop="reviewDialog = true"
+                  >Share your story with us.</a
+                >
               </v-card-text>
+              <v-card-text> </v-card-text>
             </v-card>
           </v-tab-item>
           <!-- </v-tabs> -->
@@ -219,6 +312,58 @@
         </div>
       </v-col>
     </v-row>
+    <!-- review modal -->
+    <v-dialog v-model="reviewDialog" max-width="768">
+      <v-card>
+        <v-card-title class="headline"
+          >Review Package ({{ packs.Package_Name }})</v-card-title
+        >
+
+        <v-form>
+          <v-container>
+            <v-row>
+              <v-col cols="12"> </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="formValues.rating"
+                  label="Rating"
+                  outlined
+                  dense
+                  min="1"
+                  max="5"
+                  id="rating"
+                  name="rating"
+                  type="number"
+                />
+              </v-col>
+              <v-col cols="12">
+                <v-textarea
+                  v-model="formValues.review"
+                  label="Review Contents"
+                  outlined
+                  dense
+                  id="review"
+                  name="review"
+                ></v-textarea>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn color="green darken-1" text @click="dialog = false">
+            Cancel
+          </v-btn>
+
+          <v-btn color="green darken-1" text @click="postReviews">
+            Submit
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- review modal ends -->
     <!-- Dialog box (MODAL) STARTS -->
     <v-dialog v-model="dialog" max-width="500">
       <v-card>
@@ -272,10 +417,14 @@
 </template>
 <script>
 // import { AddInquiry } from "../../components/Packages/Inquiry";
+// import { Review } from "../../components/Packages/Review";
+
 export default {
-  // components: { AddInquiry },
+  // name: "Package",
+  // components: { Review },
   data: () => ({
     dialog: false,
+    reviewDialog: false,
     packs: {},
     items: [
       {
@@ -290,13 +439,23 @@ export default {
       }
     ],
     formValues: {
-          People: "",
-          Message: "",
-          package_id:""
-        },
+      People: "",
+      Message: "",
+      package_id: "",
+      rating: null,
+      review: ""
+    },
+    reviews: [],
+    aggregate: {
+      total: null,
+      average: null
+    }
   }),
+
   created() {
     this.getPackage();
+
+    setTimeout(this.getReviews, 1000);
   },
   methods: {
     getPackage() {
@@ -324,14 +483,13 @@ export default {
         let inqData = {
           People: this.formValues.People,
           Message: this.formValues.Message,
-          user_id: this.$auth.user.id,
-          package_id: this.packs.id,
+          package_id: this.packs.id
         };
         this.$axios
           .$post("user/inquiry", inqData)
           .then(async response => {
             this.setNotifyMessage({
-              message: "Successfully Created Blog.",
+              message: "Inquiry completed.",
               color: "green"
             });
             this.$emit("close");
@@ -342,6 +500,49 @@ export default {
               color: "red"
             });
           });
+      } else {
+        this.setNotifyMessage({
+          message: "Please login first.",
+          color: "red"
+        });
+      }
+    },
+
+    getReviews() {
+      this.$axios.$get(`package/review/${this.packs.id}`).then(response => {
+        this.reviews = response.reviews;
+        this.aggregate.total = response.total;
+        this.aggregate.average = response.average;
+        console.log(response);
+      });
+    },
+
+    postReviews() {
+      if (this.$auth.loggedIn) {
+        let inqData = {
+          rating: this.formValues.rating,
+          review: this.formValues.review
+        };
+        this.$axios
+          .$post(`package/review/${this.packs.id}`, inqData)
+          .then(async response => {
+            this.setNotifyMessage({
+              message: "Package reviewed successfully.",
+              color: "green"
+            });
+            this.$emit("close");
+          })
+          .catch(() => {
+            this.setNotifyMessage({
+              message: "Something went wrong.",
+              color: "red"
+            });
+          });
+      } else {
+        this.setNotifyMessage({
+          message: "Please login first.",
+          color: "red"
+        });
       }
     }
   }
