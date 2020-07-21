@@ -12,6 +12,19 @@
       <v-btn @click="$router.push('/')"  text class="text-capitalize">
         Home
       </v-btn>
+      <v-menu
+                 >
+        <template v-slot:activator="{ on }" >
+          <v-btn v-on="on" text class="text-capitalize ">Inquiry
+            <v-badge
+               color="green"
+              :content="Object.keys(inquiryDetail).length"
+              overlap
+            ><v-icon large>mdi-email</v-icon>
+            </v-badge>
+          </v-btn>
+        </template>
+      </v-menu>
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
@@ -136,6 +149,7 @@
         clipped: false,
         drawer: false,
         fixed: false,
+        inquiryDetail:[],
         selectedIndex: null,
         icons: [
           'mdi-facebook',
@@ -165,6 +179,17 @@
             to: '/admin/addBlogs'
           }
         ],
+
+      }
+    },
+    created() {
+      this.getInquiry();
+    },
+    methods:{
+      getInquiry(){
+        this.$axios.get(`user/inquiry/all`).then((response)=>{
+          this.inquiryDetail=response;
+        })
 
       }
     }
