@@ -474,13 +474,8 @@ export default {
         href: "/packages"
       }
     ],
-    formValues: {
-      People: "",
-      Message: "",
-      package_id: "",
-      rating: null,
-      review: ""
-    },
+    formValues: [
+    ],
     reviews: [],
     aggregate: {
       total: null,
