@@ -36,13 +36,13 @@
                   v-if="!active"
                   color="grey lighten-1"
                 >
-                  mdi-star
+                  mdi-email
                 </v-icon>
                 <v-icon
                   v-else
-                  color="yellow"
+                  color="black"
                 >
-                  mdi-star
+                  mdi-email-open
                 </v-icon>
               </v-list-item-action>
 
