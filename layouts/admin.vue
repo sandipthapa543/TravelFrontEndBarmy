@@ -10,22 +10,22 @@
       <div class="font-weight-bold title">Travel Admin</div>
       <v-spacer></v-spacer>
       <v-btn @click="$router.push('/')"  text class="text-capitalize">
-        Home
+        <v-icon large>mdi-home</v-icon>
       </v-btn>
       <v-menu>
         <template v-slot:activator="{ on }"  >
-          <v-btn v-on="on" text class="text-capitalize " >Inquiry
+          <v-btn v-on="on" text class="text-capitalize " >
             <v-badge
               :content="inquiryDetail.length"
               color="green"
               overlap
-
             >
-
             <v-icon large>mdi-email</v-icon>
+
             </v-badge>
           </v-btn>
         </template>
+        <inquiry-list  :inquiry-detail="inquiryDetail || []"></inquiry-list>
       </v-menu>
     </v-app-bar>
     <v-navigation-drawer
@@ -141,10 +141,11 @@
 <script>
 
   import VueSnackbar from "~/components/Common/VueSnackbar";
+  import InquiryList from "../components/Packages/InquiryList";
   export default {
     components: {
 
-      VueSnackbar
+      VueSnackbar,InquiryList
     },
     data() {
       return {
