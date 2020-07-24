@@ -191,7 +191,8 @@
     },
     methods:{
       getInquiry(){
-        this.$axios.get(`user/inquiry/all`).then((response)=>{
+        this.$axios.get(`user/inquiry/all?sort=id&order=ASC`)
+          .then((response)=>{
          this.inquiryDetail=response.data
 
         })
