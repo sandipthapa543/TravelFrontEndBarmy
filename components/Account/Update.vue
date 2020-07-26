@@ -5,35 +5,41 @@
     </v-card-title>
     <v-card-text>
       <v-text-field
-        v-model="formValues.first_name"
+        v-model="formValues.First_Name"
         label="First Name"
         flat
         prepend-inner-icon="mdi-account-box"
       ></v-text-field>
       <v-text-field
-        v-model="formValues.last_name"
+        v-model="formValues.Last_Name"
         label="Last Name"
         flat
         prepend-inner-icon="mdi-account"
       ></v-text-field>
 
       <v-text-field
-        v-model="formValues.email"
+        v-model="formValues.Email"
         type="email"
         label="Email"
         flat
         prepend-inner-icon="mdi-email"
       ></v-text-field>
       <v-text-field
-        v-model="formValues.phone"
+        v-model="formValues.Contact_No"
         single-line
         label="phone"
         flat
         prepend-inner-icon="mdi-phone"
       ></v-text-field>
       <v-text-field
-        v-model="formValues.permanent_address"
-        label="Address"
+        v-model="formValues.City"
+        label="City"
+        flat
+        prepend-inner-icon="mdi-home"
+      ></v-text-field>
+      <v-text-field
+        v-model="formValues.Country"
+        label="Country"
         flat
         prepend-inner-icon="mdi-home"
       ></v-text-field>
@@ -50,6 +56,7 @@
 </template>
 <script>
   export default {
+    props:['userDetail'],
     data () {
       return {
         formValues: {
@@ -67,13 +74,14 @@
     methods: {
       updateUser () {
         const dataPost = {
-          first_name: this.formValues.first_name,
-          last_name:this.formValues.last_name,
-          email: this.formValues.email,
-          phone:this.formValues.phone,
-          address:this.formValues.address
+          First_Name: this.formValues.First_Name,
+          Last_Name: this.formValues.Last_Name,
+          Email: this.formValues.Email,
+          Contact_No: this.formValues.Contact_No,
+          City: this.formValues.City,
+          Country: this.formValues.Country,
         }
-        this.$axios.$put(`users/edit/${this.$auth.user.id}`,  dataPost )
+        this.$axios.$patch(`user/update/${this.$auth.user.id}`,  dataPost )
           .then(()=> {
             this.$emit('close')
             this.setNotifyMessage({message: "Successfully Updated Details.", color: "green"})
