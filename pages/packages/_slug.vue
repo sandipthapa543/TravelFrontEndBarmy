@@ -474,13 +474,8 @@ export default {
         href: "/packages"
       }
     ],
-    formValues: {
-      People: "",
-      Message: "",
-      package_id: "",
-      rating: null,
-      review: ""
-    },
+    formValues: [
+    ],
     reviews: [],
     aggregate: {
       total: null,
@@ -549,7 +544,6 @@ export default {
         this.reviews = response.reviews;
         this.aggregate.total = response.total;
         this.aggregate.average = response.average;
-        console.log(response);
       });
     },
 

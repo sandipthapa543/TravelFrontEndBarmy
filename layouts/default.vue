@@ -36,7 +36,7 @@
           <v-list-item-title>Admin Dashboard</v-list-item-title>
         </v-list-item>
 
-        <v-list-item v-if="$auth.loggedIn" to="/admin/dashboard">
+        <v-list-item v-if="$auth.loggedIn" to="/account/profile">
           <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
           <v-list-item-title>Profile</v-list-item-title>
         </v-list-item>
