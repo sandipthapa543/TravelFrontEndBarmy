@@ -1,6 +1,6 @@
 <template>
-  <div class="block latestBlogBlock">
-    <v-btn color="info" class="white--text"  v-if="this.$auth.loggedIn" depressed @click="addBlog = true">
+  <div class="block latestBlogBlock" >
+    <v-btn color="info" class="white--text"  v-if="this.$auth.loggedIn" depressed @click="addBlog = true" @refersh="getBlog">
       Create New
     </v-btn>
     <v-container>
@@ -33,13 +33,40 @@
               <v-btn color="primary"  v-if=" $auth.loggedIn && $auth.user.id === item.user.id "  @click="blogs=item , addBlog=true" fab small dark>
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
+              <v-btn color="primary"  v-if=" $auth.loggedIn && $auth.user.id === item.user.id "  @click="deleteId=item.id,deleteForm = true" fab small dark>
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
     <v-dialog v-model="addBlog"  width="960" persistent v-if="this.$auth.loggedIn">
-      <add-blog v-if="addBlog"  :action-data="blogs"  @close="addBlog = false, getSingleBlog() ,blogs={}"></add-blog>
+      <add-blog v-if="addBlog"  :action-data="blogs"  @close="addBlog = false, getBlog() ,blogs={}"></add-blog>
+    </v-dialog>
+    <v-dialog
+      v-model="deleteForm"
+      width="500"
+      persistent
+    >
+      <v-card>
+        <v-card-title>
+          Confirm Delete
+        </v-card-title>
+        <v-card-text>
+          You are about to delete this product.
+        </v-card-text>
+        <v-card-actions>
+          <v-col class="text-right">
+            <v-btn class="text-capitalize" text color="grey" @click="deleteForm = false,getBlog">
+              Cancel
+            </v-btn>
+            <v-btn class="white--text text-capitalize" color="red"  @click="deleteBlog">
+              Confirm
+            </v-btn>
+          </v-col>
+        </v-card-actions>
+      </v-card>
     </v-dialog>
   </div>
 </template>
@@ -52,7 +79,9 @@ export default {
   data(){
     return{
     show: false,
-    blogLists: [],
+      deleteForm: false,
+      deleteId:'',
+      blogLists: [],
     addBlog:false,
     blogs:{}
   }
@@ -73,6 +102,13 @@ export default {
         this.blogs = response;
       });
     },
+    deleteBlog(){
+      this.$axios.$delete(`blog/${this.deleteId}`)
+        .then(() => {
+        this.setNotifyMessage({message: "Successfully Deleted Product ", color: "green"})
+        this.getBlog();
+      });
+    }
   }
 };
 </script>

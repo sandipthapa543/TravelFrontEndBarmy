@@ -341,7 +341,7 @@
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
 
-          <v-btn block color="success" class="mt-4" tile @click=" openBooking = true" >
+          <v-btn block color="success" class="mt-4" tile @click="openBooking = true" >
             Book this trip
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
