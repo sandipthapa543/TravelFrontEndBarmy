@@ -341,7 +341,7 @@
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
 
-          <v-btn block color="success" class="mt-4" tile @click="openBooking = true">
+          <v-btn block color="success" class="mt-4" tile @click=" openBooking = true" >
             Book this trip
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
@@ -401,7 +401,7 @@
     </v-dialog>
     <!-- review modal ends -->
     <!-- Dialog box (MODAL) STARTS -->
-    <v-dialog v-model="dialog" max-width="500">
+    <v-dialog v-model="dialog" max-width="500" v-if="$auth.loggedIn " >
       <v-card>
         <v-card-title class="headline">Package Enquiry</v-card-title>
 
@@ -452,11 +452,12 @@
     <v-dialog
       v-model="openBooking"
       width="500"
+      v-if="$auth.loggedIn "
       height="300"
       scrollable
       persistent >
       <booking-post
-        @close="openBooking = false"
+        @close="openBooking = false "
         :packageId="packs.id"
       ></booking-post>
     </v-dialog>
