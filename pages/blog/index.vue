@@ -49,12 +49,14 @@ import AddBlog from "../../components/Blog/AddBlog";
 export default {
   components: { AddBlog },
   name: "LatestPost",
-  data: () => ({
+  data(){
+    return{
     show: false,
     blogLists: [],
     addBlog:false,
     blogs:{}
-  }),
+  }
+  },
   created() {
     this.getBlog();
     this.getSingleBlog();

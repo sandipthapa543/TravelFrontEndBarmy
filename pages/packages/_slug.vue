@@ -341,7 +341,7 @@
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
 
-          <v-btn block color="success" class="mt-4" tile>
+          <v-btn block color="success" class="mt-4" tile @click=" openBooking = true" >
             Book this trip
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
@@ -401,7 +401,7 @@
     </v-dialog>
     <!-- review modal ends -->
     <!-- Dialog box (MODAL) STARTS -->
-    <v-dialog v-model="dialog" max-width="500">
+    <v-dialog v-model="dialog" max-width="500" v-if="$auth.loggedIn " >
       <v-card>
         <v-card-title class="headline">Package Enquiry</v-card-title>
 
@@ -449,39 +449,56 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog
+      v-model="openBooking"
+      width="500"
+      v-if="$auth.loggedIn "
+      height="300"
+      scrollable
+      persistent >
+      <booking-post
+        @close="openBooking = false "
+        :packageId="packs.id"
+      ></booking-post>
+    </v-dialog>
   </div>
+
 </template>
 <script>
 // import { AddInquiry } from "../../components/Packages/Inquiry";
 // import { Review } from "../../components/Packages/Review";
+import BookingPost from "../../components/Booking/BookingPost";
 
 export default {
   // name: "Package",
-  // components: { Review },
-  data: () => ({
-    dialog: false,
-    reviewDialog: false,
-    packs: {},
-    items: [
-      {
-        text: "Home",
-        disabled: false,
-        to: "/"
-      },
-      {
-        text: "Packages",
-        disabled: false,
-        href: "/packages"
+   components: { BookingPost },
+  data() {
+    return {
+      dialog: false,
+      reviewDialog: false,
+      openBooking: false,
+      packs: {},
+      packageId:null,
+      items: [
+        {
+          text: "Home",
+          disabled: false,
+          to: "/"
+        },
+        {
+          text: "Packages",
+          disabled: false,
+          href: "/packages"
+        }
+      ],
+      formValues: [],
+      reviews: [],
+      aggregate: {
+        total: null,
+        average: null
       }
-    ],
-    formValues: [
-    ],
-    reviews: [],
-    aggregate: {
-      total: null,
-      average: null
     }
-  }),
+  },
 
   created() {
     this.getPackage();
@@ -494,6 +511,7 @@ export default {
         .$get("package/single/" + this.$route.params.slug)
         .then(response => {
           this.packs = response;
+          this.packageId=response.package_id;
           this.items.push({
             text: response.activity.Activity_Name,
             to: response.activity.Slug,
