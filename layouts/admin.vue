@@ -1,7 +1,7 @@
 <template>
   <v-app light>
     <v-app-bar
-      color="red darken-4"
+      color="blue lighten-1"
       dark
       fixed
       app
@@ -20,13 +20,28 @@
               color="green"
               overlap
             >
-            <v-icon large>mdi-email</v-icon>
+            <v-icon large>mdi-message-text</v-icon>
 
             </v-badge>
           </v-btn>
         </template>
         <inquiry-list  :inquiry-detail="inquiryDetail || []"></inquiry-list>
       </v-menu>
+      <v-menu>
+        <template v-slot:activator="{ on }"  >
+          <v-btn v-on="on" text class="text-capitalize " @click="$router.push('/admin/booking')" >
+            <v-badge
+              v-if="['pending','booked','cancel']"
+              color="red"
+              overlap
+            >
+              <v-icon large>mdi-shopping</v-icon>
+
+            </v-badge>
+          </v-btn>
+        </template>
+      </v-menu>
+
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
@@ -142,10 +157,11 @@
 
   import VueSnackbar from "~/components/Common/VueSnackbar";
   import InquiryList from "../components/Packages/InquiryList";
+  import BookingList from "../components/Booking/BookingList";
   export default {
     components: {
 
-      VueSnackbar,InquiryList
+      VueSnackbar,InquiryList,BookingList
     },
     data() {
       return {
