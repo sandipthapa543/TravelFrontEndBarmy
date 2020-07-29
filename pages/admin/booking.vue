@@ -36,22 +36,20 @@
                 <template>
                   <v-list-item-content>
                     <v-list-item-title v-text="item.user.Email"></v-list-item-title>
-                    <v-divider></v-divider>
-                    <v-list-item-title >Booked Package</v-list-item-title>
+
+                    <v-list-item-title class="font-weight-bold" >Booked Package</v-list-item-title>
                     <v-list-item-subtitle class="text--primary" v-text="item.package.Package_Name"></v-list-item-subtitle>
-                    <v-divider></v-divider>
-                    <v-list-item-title >Arrival Date</v-list-item-title>
+                    <v-list-item-title  class="font-weight-bold">Arrival Date</v-list-item-title>
                     <v-list-item-subtitle class="text--primary"  v-text="item.departure_dates.substring(0,10)">Departure Date
                     </v-list-item-subtitle>
-                    <v-divider></v-divider>
-                    <v-list-item-title >Total Number of People</v-list-item-title>
+                    <v-list-item-title class="font-weight-bold" >Total Number of People</v-list-item-title>
                     <v-list-item-subtitle class="text--primary"  v-text="item.People"></v-list-item-subtitle>
-                    <v-divider></v-divider>
+                    <v-list-item-title class="font-weight-bold" >Contact No</v-list-item-title>
+                    <v-list-item-subtitle class="text--primary"  v-text="item.user.Contact_No"></v-list-item-subtitle>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle v-text="item.Status"></v-list-item-subtitle>
                   </v-list-item-content>
-
                   <v-list-item-action>
                     <v-list-item-action-text v-text="item.createdAt.substring(0, 10)"></v-list-item-action-text>
                     <v-row>
@@ -70,8 +68,6 @@
               </v-list-item>
 
               <v-divider
-                v-if="index + 1 < item.length"
-                :key="index"
               ></v-divider>
             </template>
           </v-list-item-group>
