@@ -15,14 +15,17 @@
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.11.0",
     "bootstrap": "^4.5.0",
+    "dotenv": "^8.2.0",
     "jquery": "^3.5.1",
     "moment": "^2.27.0",
     "nuxt": "^2.0.0",
     "popper.js": "^1.16.1",
     "vue": "latest",
+    "vue2-google-maps": "^0.10.7",
     "vuex": "latest"
   },
   "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/vuetify": "^1.0.0"
   }
 }

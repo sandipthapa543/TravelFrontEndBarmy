@@ -26,15 +26,20 @@ export default {
   */
   css: [
   ],
+
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/common.js',
+    '~/plugins/google-maps'
 
 
   ],
+  env: {
+    VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
+  },
 
   auth:{ strategies: {
       local: {
@@ -69,7 +74,8 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/dotenv',
   ],
   /*
   ** vuetify module configuration

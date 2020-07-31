@@ -1,15 +1,28 @@
 <template>
   <div>
-    <v-img
-      class="white--text align-end"
-      height="320"
-      src="/_nuxt/assets/images/1.jpg"
-      alt="About US"
-    >
-      <h1 class="ts text-uppercase text-center">
-        About Us
-      </h1>
-    </v-img>
+    <gmap-map :center="center" :map-type-id="mapTypeId" :zoom="5">
+      <gmap-info-window
+        @closeclick="window_open=false"
+        :opened="window_open"
+        :position="center"
+        :options="{
+          pixelOffset: {
+            width: 0,
+            height: -35
+          }
+        }"
+      >
+        Travel Barmy
+      </gmap-info-window>
+
+      <gmap-marker
+        v-for="(item, index) in markers"
+        :key="index"
+        :position="item.position"
+        v-text="item.name"
+        @click="openWindow"
+      ></gmap-marker>
+    </gmap-map>
     <div style="background: cadetblue">
       <v-breadcrumbs :items="items" class="container">
         <template v-slot:divider>
@@ -68,6 +81,14 @@ export default {
     Gallery
   },
   data: () => ({
+    center: { lat: 27.7052354, lng: 85.3294158 },
+    mapTypeId: "terrain",
+    markers: [
+      { position: { lat: 27.7052354, lng: 85.3294158,} },
+      {name:'Travel Barmy'}
+    ],
+    window_open: false,
+    info_marker: null,
     items: [
       {
         text: "Home",
@@ -78,6 +99,18 @@ export default {
         text: "About Us"
       }
     ]
-  })
+  }),
+
+  methods: {
+    openWindow () {
+      this.window_open = true
+    }
+  }
 };
 </script>
+<style lang="scss" scoped>
+  .vue-map-container {
+    height: 450px;
+    width: 100%;
+  }
+</style>
