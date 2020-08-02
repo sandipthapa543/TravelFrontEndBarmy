@@ -22,13 +22,13 @@
           ></v-img>
 
           <v-card-text>
-            Visit ten places on our planet that are undergoing the biggest
-            changes today.
+            <p v-text="blogs.Contents"></p>
           </v-card-text>
 
           <v-card-actions>
             <v-btn text color="red lighten-2" @click.stop="dialog = true">
-              {{comment.length}} {{comment.length === 1 ? "Comment" : "Comments"}}
+              {{ comment.length }}
+              {{ comment.length === 1 ? "Comment" : "Comments" }}
             </v-btn>
 
             <!-- <v-dialog v-model="dialog" max-width="500">
@@ -63,9 +63,32 @@
           </v-card-actions>
           <!-- </v-card>
   <v-card> -->
-    <v-divider></v-divider>
+          <v-divider></v-divider>
           <comment :comments="comment" :blogId="blogs.id"></comment>
         </v-card>
+      </v-col>
+      <v-col cols="4">
+        <h2 primary-title class="text-center">
+          Featured Blogs
+        </h2>
+        <v-card class="d-flex mt-2 align-top" v-for="(blog,index) in allBlogs" :key="index">
+            <v-img
+              max-width="100"
+              :lazy-src="`http://localhost:8080/uploads/blogs/${blog.Image}`"
+              :src="`http://localhost:8080/uploads/blogs/${blog.Image}`"
+              eager
+            >
+              <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-progress-circular
+                    indeterminate
+                    color="grey lighten-5"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
+            <v-card-title class="py-0">{{ blog.Title }}</v-card-title>
+          </v-card>
       </v-col>
     </v-row>
   </section>
@@ -108,10 +131,10 @@ export default {
     ]
   }),
 
-async fetch() {
-      this.blogs = await this.$axios.$get(`blog/${this.$route.params.slug}`)
-      this.comment = await this.$axios.$get(`blog/comment/${this.blogs.id}`)
-},
+  async fetch() {
+    this.blogs = await this.$axios.$get(`blog/${this.$route.params.slug}`);
+    this.comment = await this.$axios.$get(`blog/comment/${this.blogs.id}`);
+  },
 
   created() {
     // this.getSingleBlog();
@@ -120,15 +143,9 @@ async fetch() {
       this.getComments();
     }
 
-    //   this.getBlogs();
+    this.getBlogs();
   },
   methods: {
-    getSingleBlog() {
-      this.$axios.$get(`blog/${this.$route.params.slug}`).then(response => {
-        this.blogs = response;
-        this.blogId = response.blog_id;
-      });
-    },
     getBlogs() {
       this.$axios.$get("blog/all").then(response => {
         this.allBlogs = response;
@@ -138,7 +155,7 @@ async fetch() {
       this.$axios.$get(`blog/comment/${this.blogId}`).then(response => {
         this.comment = response;
       });
-    },
+    }
   }
 };
 </script>

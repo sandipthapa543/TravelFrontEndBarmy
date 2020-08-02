@@ -124,7 +124,7 @@ export default {
     skipPack(index, skipValue) {
       this.skip = skipValue;
       this.current = index;
-      this.getPackages();
+      this.$fetch();
     },
     prev(curr) {
       this.current = curr - 1;
@@ -134,15 +134,15 @@ export default {
       this.current = curr + 1;
       this.skipPack(curr + 1, curr * this.limit);
     },
-    getPackages() {
-      this.$axios
-        .$get(
-          `package/show?sort=${this.sort}&order=${this.order}&limit=${this.limit}&skip=${this.skip}`
-        )
-        .then(response => {
-          this.packitems = response;
-        });
-    },
+    // getPackages() {
+    //   this.$axios
+    //     .$get(
+    //       `package/show?sort=${this.sort}&order=${this.order}&limit=${this.limit}&skip=${this.skip}`
+    //     )
+    //     .then(response => {
+    //       this.packitems = response;
+    //     });
+    // },
     getPacks() {
       this.$axios.$get(`package/show?sort=id&order=ASC`).then(response => {
         this.packages = response;

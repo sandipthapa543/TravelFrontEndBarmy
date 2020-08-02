@@ -4,33 +4,52 @@
       v-if="packitem.Image"
       height="220"
       :alt="packitem.Package_Name"
-      :src="`http://localhost:8080/uploads/packages/`+packitem.Image"
+      :src="`http://localhost:8080/uploads/packages/` + packitem.Image"
     ></v-img>
 
     <h4 class="px-4 pt-2" style="min-height: 64px">
-    <router-link :to="`/packages/${packitem.Slug}`" class="no-underline">{{ packitem.Package_Name }}</router-link>
+      <router-link :to="`/packages/${packitem.Slug}`" class="no-underline">{{
+        packitem.Package_Name
+      }}</router-link>
     </h4>
     <!-- <v-divider></v-divider> -->
     <v-card-subtitle class="py-1 d-flex">
-      <span v-if="packitem.activity">{{ packitem.activity.Activity_Name }}</span>
+      <span v-if="packitem.activity">{{
+        packitem.activity.Activity_Name
+      }}</span>
       <span v-else>{{ activity }}</span>
       <v-spacer></v-spacer>
-      <v-rating
-        :value="4.3"
-        color="amber"
-        dense
-        half-increments
-        readonly
-        size="14"
-        :hover="true"
-        title="Rating: 5"
-      ></v-rating>
+      <span v-for="(rating, index) in reviews" :key="index">
+        <v-rating
+          v-show="rating.package_id === packitem.id"
+          :value="rating.average ? rating.average : 4"
+          color="amber"
+          background-color="grey darken-1"
+          empty-icon="$ratingFull"
+          dense
+          half-increments
+          readonly
+          size="18"
+          :hover="true"
+          title="Rating: 5"
+        ></v-rating>
+      </span>
     </v-card-subtitle>
     <v-divider></v-divider>
     <v-card-text>
-      <p class="text-justify mb-0" style="min-height: 66px" v-if="packitem.Description">{{ packitem.Description.length > 120 ? packitem.Description.substring(0, 120)+"..." : packitem.Description  }}</p>
+      <p
+        class="text-justify mb-0"
+        style="min-height: 66px"
+        v-if="packitem.Description"
+      >
+        {{
+          packitem.Description.length > 120
+            ? packitem.Description.substring(0, 120) + "..."
+            : packitem.Description
+        }}
+      </p>
     </v-card-text>
-        <v-divider></v-divider>
+    <v-divider></v-divider>
 
     <v-card-title class="py-2">
       <div>
@@ -43,16 +62,23 @@
       </div>
       <v-spacer></v-spacer>
       <div>
-        <img :src="`https://himalayantrekkers.com/images/tripgrade/`+packitem.Difficulty_level+`.svg`"
-        alt="tripgrade" width="90px" class="d-block" />
+        <img
+          :src="
+            `https://himalayantrekkers.com/images/tripgrade/` +
+              packitem.Difficulty_level +
+              `.svg`
+          "
+          alt="tripgrade"
+          width="90px"
+          class="d-block"
+        />
         <v-card-subtitle class="pa-0 d-block text-center">
           <span v-if="packitem.Difficulty_level === 1">Easy</span>
           <span v-else-if="packitem.Difficulty_level === 2">Moderate</span>
           <span v-else-if="packitem.Difficulty_level === 3">Sternous</span>
           <span v-else-if="packitem.Difficulty_level === 4">Difficult</span>
           <span v-else>Challenging</span>
-          </v-card-subtitle
-        >
+        </v-card-subtitle>
       </div>
     </v-card-title>
   </v-card>
@@ -69,12 +95,13 @@
 export default {
   props: {
     packitem: {},
-    activity: ""
+    activity: "",
+    reviews: {}
   },
   methods: {
     formatPrice(value) {
-        let val = (value/1).toFixed(0)
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      let val = (value / 1).toFixed(0);
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
   }
 };

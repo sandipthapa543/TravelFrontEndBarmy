@@ -1,11 +1,24 @@
 <template>
   <div>
     <v-img
+      v-if="activity.Image"
       class="white--text align-end"
       height="320"
       :src="`http://localhost:8080/uploads/activities/` + activity.Image"
+      :lazy-src="`http://localhost:8080/uploads/activities/` + activity.Image"
       :alt="activity.Activity_Name"
+      eager
     >
+                      <template v-slot:placeholder>
+                    <v-row
+                      class="fill-height ma-0"
+                      align="center"
+                      justify="center"
+                    >
+                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-row>
+                  </template>
+
       <h1 class="ts text-uppercase text-center">
         {{ activity.Activity_Name }}
       </h1>

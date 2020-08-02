@@ -7,8 +7,8 @@
     <!-- <v-slide-item> -->
     <v-scale-transition>
       <v-row>
-        <v-col v-for="(packitem,index) in packitems" :key="index">
-          <package :packitem="packitem"></package>
+        <v-col v-for="(packitem, index) in packitems" :key="index">
+          <package :packitem="packitem" :reviews="reviews"></package>
         </v-col>
       </v-row>
     </v-scale-transition>
@@ -25,8 +25,14 @@ export default {
   data: () => ({
     showArrows: true,
     prevIcon: false,
-    nextIcon: false
-  })
+    nextIcon: false,
+    reviews: []
+  }),
+  created() {
+    this.$axios.$get(`package/review`).then(response => {
+      this.reviews = response;
+    });
+  }
 };
 </script>
 

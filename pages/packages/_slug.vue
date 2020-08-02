@@ -46,6 +46,7 @@
           <v-col cols="4">
             <div>
               <img
+                v-if="packs.Difficulty_level"
                 :src="
                   `https://himalayantrekkers.com/images/tripgrade/` +
                     packs.Difficulty_level +
@@ -283,12 +284,8 @@
                 style="border: 1px solid aqua"
               >
                 <div class="d-flex" style="width:100%">
-                  <v-list-item-avatar
-                    class="my-0"
-                    height="100"
-                    width="100"
-                  >
-                  <v-icon size="100">mdi-account-circle</v-icon>
+                  <v-list-item-avatar class="my-0" height="100" width="100">
+                    <v-icon size="100">mdi-account-circle</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-title class="headline" v-if="review.user">
@@ -341,7 +338,13 @@
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
 
-          <v-btn block color="success" class="mt-4" tile @click="openBooking = true" >
+          <v-btn
+            block
+            color="success"
+            class="mt-4"
+            tile
+            @click="openBooking = true"
+          >
             Book this trip
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
@@ -401,7 +404,7 @@
     </v-dialog>
     <!-- review modal ends -->
     <!-- Dialog box (MODAL) STARTS -->
-    <v-dialog v-model="dialog" max-width="500" v-if="$auth.loggedIn " >
+    <v-dialog v-model="dialog" max-width="500" v-if="$auth.loggedIn">
       <v-card>
         <v-card-title class="headline">Package Enquiry</v-card-title>
 
@@ -452,17 +455,17 @@
     <v-dialog
       v-model="openBooking"
       width="500"
-      v-if="$auth.loggedIn "
+      v-if="$auth.loggedIn"
       height="300"
       scrollable
-      persistent >
+      persistent
+    >
       <booking-post
-        @close="openBooking = false "
+        @close="openBooking = false"
         :packageId="packs.id"
       ></booking-post>
     </v-dialog>
   </div>
-
 </template>
 <script>
 // import { AddInquiry } from "../../components/Packages/Inquiry";
@@ -471,14 +474,14 @@ import BookingPost from "../../components/Booking/BookingPost";
 
 export default {
   // name: "Package",
-   components: { BookingPost },
+  components: { BookingPost },
   data() {
     return {
       dialog: false,
       reviewDialog: false,
       openBooking: false,
       packs: {},
-      packageId:null,
+      packageId: null,
       items: [
         {
           text: "Home",
@@ -497,7 +500,7 @@ export default {
         total: null,
         average: null
       }
-    }
+    };
   },
 
   created() {
@@ -511,7 +514,7 @@ export default {
         .$get("package/single/" + this.$route.params.slug)
         .then(response => {
           this.packs = response;
-          this.packageId=response.package_id;
+          this.packageId = response.package_id;
           this.items.push({
             text: response.activity.Activity_Name,
             to: response.activity.Slug,

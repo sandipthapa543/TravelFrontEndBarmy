@@ -132,393 +132,393 @@ export default {
       countries: [
         {
           text: "Afghanistan",
-          value: "Afg",
+          value: "Afghanistan",
           countryCode: "+93"
         },
         {
           text: "Albania",
-          value: "Al",
+          value: "Albania",
           countryCode: "+355"
         },
         {
           text: "Algeria",
-          value: "Alg",
+          value: "Algeria",
           countryCode: "+213"
         },
         {
           text: "Argentina",
-          value: "Ag",
+          value: "Argentina",
           countryCode: "+54"
         },
         {
           text: "Australia",
-          value: "aus",
+          value: "Australia",
           countryCode: "+61"
         },
         {
           text: "Austria",
-          value: "at",
+          value: "Austria",
           countryCode: "+43"
         },
         {
           text: "Bahrain",
-          value: "Bh",
+          value: "Bahrain",
           countryCode: "+973"
         },
         {
           text: "Bangladesh",
-          value: "Bg",
+          value: "Bangladesh",
           countryCode: "+880"
         },
         {
           text: "Belgium",
-          value: "Bel",
+          value: "Belgium",
           countryCode: "+32"
         },
         {
           text: "Bhutan",
-          value: "BHU",
+          value: "Bhutan",
           countryCode: "+975"
         },
         {
           text: "Brazil",
-          value: "bra",
+          value: "Brazil",
           countryCode: "+55"
         },
         {
           text: "Chile",
-          value: "chi",
+          value: "Chile",
           countryCode: "+56"
         },
         {
           text: "China",
-          value: "ch",
+          value: "China",
           countryCode: "+86"
         },
         {
           text: "Cyprus",
-          value: "cy",
+          value: "Cyprus",
           countryCode: "+357"
         },
         {
           text: "Czech Republic",
-          value: "cz",
+          value: "Czech Republic",
           countryCode: "+420"
         },
         {
           text: "Denmark",
-          value: "Den",
+          value: "Denmark",
           countryCode: "+45"
         },
         {
           text: "Egypt",
-          value: "eg",
+          value: "Egypt",
           countryCode: "+20"
         },
         {
           text: "Estonia",
-          value: "es",
+          value: "Estonia",
           countryCode: "+372"
         },
         {
           text: "Fiji",
-          value: "fi",
+          value: "Fiji",
           countryCode: "+679"
         },
         {
           text: "Finland",
-          value: "fin",
+          value: "Finland",
           countryCode: "+358"
         },
         {
           text: "France",
-          value: "fra",
+          value: "France",
           countryCode: "+33"
         },
         {
           text: "Germany",
-          value: "ger",
+          value: "Germany",
           countryCode: "+49"
         },
         {
           text: "Greece",
-          value: "gre",
+          value: "Greece",
           countryCode: "+30"
         },
         {
           text: "Hong Kong",
-          value: "hk",
+          value: "Hong Kong",
           countryCode: "+852"
         },
         {
           text: "Hungary",
-          value: "hu",
+          value: "Hungary",
           countryCode: "+36"
         },
         {
           text: "Iceland",
-          value: "ice",
+          value: "Iceland",
           countryCode: "+354"
         },
         {
           text: "India",
-          value: "in",
+          value: "India",
           countryCode: "+91"
         },
         {
           text: "Indonesia",
-          value: "ind",
+          value: "Indonesia",
           countryCode: "+62"
         },
         {
           text: "Ireland",
-          value: "ire",
+          value: "Ireland",
           countryCode: "+353"
         },
         {
           text: "Israel",
-          value: "is",
+          value: "Israel",
           countryCode: "+927"
         },
         {
           text: "Japan",
-          value: "jp",
+          value: "Japan",
           countryCode: "+81"
         },
         {
           text: "Jordan",
-          value: "jor",
+          value: "Jordan",
           countryCode: "+962"
         },
         {
           text: "Kuwait",
-          value: "kuw",
+          value: "Kuwait",
           countryCode: "+965"
         },
         {
           text: "Latvia",
-          value: "lat",
+          value: "Latvia",
           countryCode: "+371"
         },
         {
           text: "Laos",
-          value: "las",
+          value: "Laos",
           countryCode: "+856"
         },
         {
           text: "Lebanon",
-          value: "leb",
+          value: "Lebanon",
           countryCode: "+961"
         },
         {
           text: "Lithuania",
-          value: "lit",
+          value: "Lithuania",
           countryCode: "+370"
         },
         {
           text: "Luxemborg",
-          value: "lux",
+          value: "Luxemborg",
           countryCode: "+352"
         },
         {
           text: "Macau",
-          value: "mau",
+          value: "Macau",
           countryCode: "+853"
         },
         {
           text: "Malaysia",
-          value: "mala",
+          value: "Malaysia",
           countryCode: "+60"
         },
         {
           text: "Maldives",
-          value: "mald",
+          value: "Maldives",
           countryCode: "+960"
         },
         {
           text: "Malta",
-          value: "malt",
+          value: "Malta",
           countryCode: "+356"
         },
         {
           text: "Mexico",
-          value: "mex",
+          value: "Mexico",
           countryCode: "+52"
         },
         {
           text: "Monaco",
-          value: "mon",
+          value: "Monaco",
           countryCode: "+377"
         },
         {
           text: "Mongolia",
-          value: "mg",
+          value: "Mongolia",
           countryCode: "+976"
         },
         {
           text: "Morocco",
-          value: "mor",
+          value: "Morocco",
           countryCode: "+212"
         },
         {
           text: "Myanmar",
-          value: "my",
+          value: "Myanmar",
           countryCode: "+95"
         },
         {
           text: "Namibia",
-          value: "nam",
+          value: "Namibia",
           countryCode: "+264"
         },
         {
           text: "Nepal",
-          value: "NP",
+          value: "Nepal",
           countryCode: "+977"
         },
         {
           text: "Netherlands",
-          value: "nth",
+          value: "Netherlands",
           countryCode: "+31"
         },
         {
           text: "New Zealand",
-          value: "nz",
+          value: "New Zealand",
           countryCode: "+64"
         },
         {
           text: "Norway",
-          value: "nw",
+          value: "Norway",
           countryCode: "+47"
         },
         {
           text: "Oman",
-          value: "om",
+          value: "Oman",
           countryCode: "+968"
         },
         {
           text: "Pakistan",
-          value: "pak",
+          value: "Pakistan",
           countryCode: "+92"
         },
         {
           text: "Philippines",
-          value: "pe",
+          value: "Philippines",
           countryCode: "+63"
         },
         {
           text: "Poland",
-          value: "pod",
+          value: "Poland",
           countryCode: "+48"
         },
         {
           text: "Portugal",
-          value: "port",
+          value: "Portugal",
           countryCode: "+351"
         },
         {
           text: "Qatar",
-          value: "qt",
+          value: "Qatar",
           countryCode: "+974"
         },
         {
           text: "Romania",
-          value: "romo",
+          value: "Romania",
           countryCode: "+40"
         },
         {
           text: "Russia",
-          value: "rs",
+          value: "Russia",
           countryCode: "+7"
         },
         {
           text: "Saudi Arabia",
-          value: "sar",
+          value: "Saudi Arabia",
           countryCode: "+966"
         },
         {
           text: "Singapore",
-          value: "spo",
+          value: "Singapore",
           countryCode: "+65"
         },
         {
           text: "South Korea",
-          value: "sk",
+          value: "South Korea",
           countryCode: "+82"
         },
         {
           text: "Spain",
-          value: "spin",
+          value: "Spain",
           countryCode: "+34"
         },
         {
           text: "Sri Lanka",
-          value: "sril",
+          value: "Sri Lanka",
           countryCode: "+94"
         },
         {
           text: "Sweden",
-          value: "sdn",
+          value: "Sweden",
           countryCode: "+46"
         },
         {
           text: "Switzerland",
-          value: "swt",
+          value: "Switzerland",
           countryCode: "+41"
         },
         {
           text: "Taiwan",
-          value: "twn",
+          value: "Taiwan",
           countryCode: "+886"
         },
         {
           text: "Thailand",
-          value: "thl",
+          value: "Thailand",
           countryCode: "+66"
         },
         {
           text: "Turkey",
-          value: "tr",
+          value: "Turkey",
           countryCode: "+90"
         },
         {
           text: "Ukraine",
-          value: "Ues",
+          value: "Ukraine",
           countryCode: "+380"
         },
         {
           text: "United Arab Emirates",
-          value: "UAE",
+          value: "United Arab Emirates",
           countryCode: "+971"
         },
         {
           text: "United Kingdom",
-          value: "UK",
+          value: "United Kingdom",
           countryCode: "+44"
         },
         {
           text: "Vaticn",
-          value: "vat",
+          value: "Vaticn",
           countryCode: "+379"
         },
         {
           text: "Vietnam",
-          value: "vnam",
+          value: "Vietnam",
           countryCode: "+84"
         },
         {
           text: "Zimbabwe",
-          value: "zim",
+          value: "Zimbabwe",
           countryCode: "+263"
         },
 
         {
           text: "United States",
-          value: "USA",
+          value: "United States",
           countryCode: "+1"
         },
         {
           text: "Canada",
-          value: "CAN",
+          value: "Canada",
           countryCode: "+124"
         }
       ]
