@@ -327,13 +327,7 @@
             ><sup>$</sup>{{ formatPrice(packs.Price) }} <small>USD</small></span
           >
 
-          <v-btn
-            block
-            color="warning"
-            class="mt-4"
-            tile
-            @click.stop="dialog = true"
-          >
+          <v-btn block color="warning" class="mt-4" tile @click="dialog = true">
             Enquire Now
             <v-icon size="20" right>mdi-arrow-right</v-icon>
           </v-btn>
@@ -353,128 +347,48 @@
     </v-row>
     <!-- review modal -->
     <v-dialog v-model="reviewDialog" max-width="768">
-      <v-card>
-        <v-card-title class="headline"
-          >Review Package ({{ packs.Package_Name }})</v-card-title
-        >
-
-        <v-form>
-          <v-container>
-            <v-row>
-              <v-col cols="12"> </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="formValues.rating"
-                  label="Rating"
-                  outlined
-                  dense
-                  min="1"
-                  max="5"
-                  id="rating"
-                  name="rating"
-                  type="number"
-                />
-              </v-col>
-              <v-col cols="12">
-                <v-textarea
-                  v-model="formValues.review"
-                  label="Review Contents"
-                  outlined
-                  dense
-                  id="review"
-                  name="review"
-                ></v-textarea>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-form>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn color="green darken-1" text @click="dialog = false">
-            Cancel
-          </v-btn>
-
-          <v-btn color="green darken-1" text @click="postReviews">
-            Submit
-          </v-btn>
-        </v-card-actions>
+      <review 
+              @close="reviewDialog = false"
+        v-if="$auth.loggedIn"
+      :packname="packs.Package_Name" :packageId="packs.id"></review>
+      <v-card v-else>
+        <v-card-title class="headline">Please login first</v-card-title>
       </v-card>
     </v-dialog>
     <!-- review modal ends -->
-    <!-- Dialog box (MODAL) STARTS -->
-    <v-dialog v-model="dialog" max-width="500" v-if="$auth.loggedIn">
-      <v-card>
-        <v-card-title class="headline">Package Enquiry</v-card-title>
 
-        <v-form>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <p v-text="packs.Package_Name" class="text-center"></p>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="formValues.People"
-                  label="No. of People"
-                  outlined
-                  dense
-                  id="people"
-                  name="people"
-                  type="number"
-                />
-              </v-col>
-              <v-col cols="12">
-                <v-textarea
-                  v-model="formValues.Message"
-                  label="Message"
-                  outlined
-                  dense
-                  id="message"
-                  name="message"
-                ></v-textarea>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-form>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn color="green darken-1" text @click="dialog = false">
-            Cancel
-          </v-btn>
-
-          <v-btn color="green darken-1" text @click="postInquiry">
-            Submit
-          </v-btn>
-        </v-card-actions>
+    <!-- Inquiry dialog STARTS -->
+    <v-dialog v-model="dialog" max-width="500">
+      <inquiry
+        v-if="$auth.loggedIn"
+        @close="dialog = false"
+        :pname="packs.Package_Name"
+        :packageId="packs.id"
+      ></inquiry>
+      <v-card v-else>
+        <v-card-title class="headline">Please login first</v-card-title>
       </v-card>
     </v-dialog>
-    <v-dialog
-      v-model="openBooking"
-      width="500"
-      v-if="$auth.loggedIn"
-      height="300"
-      scrollable
-      persistent
-    >
+    <v-dialog v-model="openBooking" width="500" height="300" scrollable>
       <booking-post
+        v-if="$auth.loggedIn"
         @close="openBooking = false"
         :packageId="packs.id"
       ></booking-post>
+      <v-card v-else>
+        <v-card-title class="headline">Please login first</v-card-title>
+      </v-card>
     </v-dialog>
   </div>
 </template>
 <script>
-// import { AddInquiry } from "../../components/Packages/Inquiry";
-// import { Review } from "../../components/Packages/Review";
+import Inquiry from "../../components/Packages/Inquiry";
+import Review from "../../components/Packages/Review";
 import BookingPost from "../../components/Booking/BookingPost";
 
 export default {
   // name: "Package",
-  components: { BookingPost },
+  components: { BookingPost, Inquiry, Review },
   data() {
     return {
       dialog: false,
@@ -494,12 +408,8 @@ export default {
           href: "/packages"
         }
       ],
-      formValues: [],
       reviews: [],
-      aggregate: {
-        total: null,
-        average: null
-      }
+      aggregate: {}
     };
   },
 
@@ -530,35 +440,6 @@ export default {
       let val = (value / 1).toFixed(0);
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
-    postInquiry() {
-      if (this.$auth.loggedIn) {
-        let inqData = {
-          People: this.formValues.People,
-          Message: this.formValues.Message,
-          package_id: this.packs.id
-        };
-        this.$axios
-          .$post("user/inquiry", inqData)
-          .then(async response => {
-            this.setNotifyMessage({
-              message: "Inquiry completed.",
-              color: "green"
-            });
-            this.$emit("close");
-          })
-          .catch(() => {
-            this.setNotifyMessage({
-              message: "Something went wrong.",
-              color: "red"
-            });
-          });
-      } else {
-        this.setNotifyMessage({
-          message: "Please login first.",
-          color: "red"
-        });
-      }
-    },
 
     getReviews() {
       this.$axios.$get(`package/review/${this.packs.id}`).then(response => {
@@ -566,35 +447,6 @@ export default {
         this.aggregate.total = response.total;
         this.aggregate.average = response.average;
       });
-    },
-
-    postReviews() {
-      if (this.$auth.loggedIn) {
-        let inqData = {
-          rating: this.formValues.rating,
-          review: this.formValues.review
-        };
-        this.$axios
-          .$post(`package/review/${this.packs.id}`, inqData)
-          .then(async response => {
-            this.setNotifyMessage({
-              message: "Package reviewed successfully.",
-              color: "green"
-            });
-            this.$emit("close");
-          })
-          .catch(() => {
-            this.setNotifyMessage({
-              message: "Something went wrong.",
-              color: "red"
-            });
-          });
-      } else {
-        this.setNotifyMessage({
-          message: "Please login first.",
-          color: "red"
-        });
-      }
     }
   }
 };

@@ -12,6 +12,9 @@
         ></iframe>
       </v-carousel-item>
     </v-carousel>
+    <section class="white">
+      <about></about>
+    </section>
     <v-container>
       <h2 class="text-center font-weight-bold">Top Packages</h2>
       <package :packitems="packitems"></package>
@@ -24,13 +27,13 @@
       <h2 class="text-center font-weight-bold">Our Activities</h2>
       <activity :activities="activities"></activity>
     </v-container>
-    <v-parallax
-      height="600"
-      :src="require('../assets/images/himal.jpg')"
-    >
+    <v-parallax height="600" :src="require('../assets/images/himal.jpg')">
       <v-container>
         <h2 class="text-center font-weight-bold">Client Reviews</h2>
         <rating :reviews="reviews"></rating>
+        <v-btn class="mx-auto" primary @click="$router.push('/reviews')"
+          >View all reviews</v-btn
+        >
       </v-container>
     </v-parallax>
   </div>
@@ -40,6 +43,7 @@
 import Activity from "../components/homepage/ActivityLists";
 import Package from "../components/homepage/PackageList";
 import Slider from "../components/homepage/PackageSlider";
+import About from "../components/homepage/About";
 import Rating from "../components/Rating";
 export default {
   head: {
@@ -53,7 +57,7 @@ export default {
     ],
     noscript: [{ innerHTML: "Body No Scripts", body: true }]
   },
-  components: { Activity, Package, Slider, Rating },
+  components: { Activity, Package, Slider, Rating, About },
   data: () => ({
     packitems: [],
     activities: [],
@@ -105,3 +109,9 @@ export default {
   }
 };
 </script>
+
+<style>
+  .aboutus {
+    
+  }
+</style>

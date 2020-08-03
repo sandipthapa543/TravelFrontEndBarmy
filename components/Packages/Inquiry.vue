@@ -1,33 +1,32 @@
 <template>
   <v-card>
-    <v-card-title class="headline"
-      >Review Package ({{ packname }})</v-card-title
-    >
+    <v-card-title class="headline">Package Enquiry</v-card-title>
+
     <v-form>
       <v-container>
         <v-row>
-          <v-col cols="12"> </v-col>
+          <v-col cols="12">
+            <p v-text="pname" class="text-center"></p>
+          </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="formValues.rating"
-              label="Rating"
+              v-model="formValues.People"
+              label="No. of People"
               outlined
               dense
-              min="1"
-              max="5"
-              id="rating"
-              name="rating"
+              id="people"
+              name="people"
               type="number"
             />
           </v-col>
           <v-col cols="12">
             <v-textarea
-              v-model="formValues.review"
-              label="Review Contents"
+              v-model="formValues.Message"
+              label="Message"
               outlined
               dense
-              id="review"
-              name="review"
+              id="message"
+              name="message"
             ></v-textarea>
           </v-col>
         </v-row>
@@ -41,7 +40,7 @@
         Cancel
       </v-btn>
 
-      <v-btn color="green darken-1" text @click="postReviews">
+      <v-btn color="green darken-1" text @click="postInquiry">
         Submit
       </v-btn>
     </v-card-actions>
@@ -50,23 +49,23 @@
 
 <script>
 export default {
-  props: ["packname", "packageId"],
-
+  props: ["pname","packageId"],
   data: () => ({
-    formValues: {}
+    formValues: {},
   }),
   methods: {
-    postReviews() {
+    postInquiry() {
       if (this.$auth.loggedIn) {
         let inqData = {
-          rating: this.formValues.rating,
-          review: this.formValues.review
+          People: this.formValues.People,
+          Message: this.formValues.Message,
+          package_id: this.packageId
         };
         this.$axios
-          .$post(`package/review/${this.packageId}`, inqData)
+          .$post("user/inquiry", inqData)
           .then(async response => {
             this.setNotifyMessage({
-              message: "Package reviewed successfully.",
+              message: "Inquiry completed.",
               color: "green"
             });
             this.$emit("close");
